@@ -25,20 +25,26 @@ object Server extends App with RouteConcatenation {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
+  // Read the server configuration.
   implicit val jsonFormats = DefaultFormats
   val serverConfigStr =  Source.fromResource("server_config_local.json").getLines().mkString(" ")
   val serverConfig = Serialization.read[ServerConfig](serverConfigStr)
 
+  ///////////////////////// Initialize various actors
   //  val binLocation = getClass.getResource("/scl_bin/all_morf.bin").getPath
   val binLocation = new File(serverConfig.deployment_directory.get,   "src/main/resources/scl_bin").getAbsolutePath
-
   val analyser = new Analyser(binFilePath = new File(binLocation, "all_morf.bin").getAbsolutePath)
   val analyserActor = system.actorOf(
     Props(classOf[AnalyserActor], analyser))
+
+
+  //////// Done initializing actors.
+
+  // Set up the routes.
   val routes =
     cors() {concat(
       new AnalyserService(analyserActor).route,
-      SwaggerDocService.routes)
+      SwaggerDocService.routes)  // Corresponds to : api-docs/
     }
   Http().bindAndHandle(routes, "0.0.0.0", 9090)
 }

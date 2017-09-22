@@ -15,11 +15,11 @@ import org.json4s.native.Serialization
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
+import akka.pattern.{ ask, pipe }
 
-
-@Api(value = "/analyze", produces = "application/json")
-@Path("/analyze")
-class AnalyserService(analyzerActorRef: ActorRef)(implicit executionContext: ExecutionContext)
+@Api(value = "/analyse", produces = "application/json")
+@Path("/analyse")
+class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: ExecutionContext)
   extends Directives with Json4sSupport {
   implicit val jsonFormats = jsonHelper.formats
   implicit val jsonWritePretty = ShouldWritePretty.True
@@ -30,19 +30,19 @@ class AnalyserService(analyzerActorRef: ActorRef)(implicit executionContext: Exe
   val route = getAnalysis
 
   @Path("/{word}")
-  @ApiOperation(value = "Return Analysis of a word", notes = "", nickname = "hello", httpMethod = "GET")
+  @ApiOperation(value = "Return Analysis of a word", notes = "", nickname = "Analyse", httpMethod = "GET")
   @ApiImplicitParams(Array(
-    new ApiImplicitParam(name = "word", value = "Word to analyse", required = false, dataType = "string", paramType = "path")
+    new ApiImplicitParam(name = "word", value = "Word to analyse, in HK", required = true, dataType = "string", paramType = "path")
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return Analysis", response = classOf[SclAnalysis]),
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getAnalysis =
-    path("analyze" / Segment) { word =>
+    path("analyse" / Segment) { word =>
       get {
         complete {
-          (analyzerActorRef ? word)  // Send Hello(name) to hello actor, get response in a Future object.
+          ask(analyserActorRef, word)
             .mapTo[Seq[SclAnalysis]]
         }
       }
