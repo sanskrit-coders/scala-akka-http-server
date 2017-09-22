@@ -7,13 +7,11 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.RouteConcatenation
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
-import dbUtils.jsonHelper
 import org.json4s.DefaultFormats
 import org.json4s.native.Serialization
-import vedavaapi.hello.{HelloActor, HelloService}
-import vedavaapi.swagger.SwaggerDocService
 import sanskrit_coders.scl.{Analyser, AnalyserActor}
-import scl.grammar.analyzer.AnalyserService
+import scl.grammar.AnalyserService
+import vedavaapi.swagger.SwaggerDocService
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.Source
@@ -27,8 +25,6 @@ object Server extends App with RouteConcatenation {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
-  val hello = system.actorOf(Props[HelloActor])
-
   implicit val jsonFormats = DefaultFormats
   val serverConfigStr =  Source.fromResource("server_config_local.json").getLines().mkString(" ")
   val serverConfig = Serialization.read[ServerConfig](serverConfigStr)
@@ -41,7 +37,6 @@ object Server extends App with RouteConcatenation {
     Props(classOf[AnalyserActor], analyser))
   val routes =
     cors() {concat(
-      new HelloService(hello).route,
       new AnalyserService(analyserActor).route,
       SwaggerDocService.routes)
     }

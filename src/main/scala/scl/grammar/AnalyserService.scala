@@ -1,9 +1,7 @@
-package scl.grammar.analyzer
+package scl.grammar
 
 import javax.ws.rs.Path
 
-import scala.concurrent.ExecutionContext
-import scala.concurrent.duration._
 import akka.actor.ActorRef
 import akka.http.scaladsl.server.Directives
 import akka.pattern.ask
@@ -13,7 +11,10 @@ import dbUtils.jsonHelper
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport.ShouldWritePretty
 import io.swagger.annotations._
-import org.json4s.native.{Serialization}
+import org.json4s.native.Serialization
+
+import scala.concurrent.ExecutionContext
+import scala.concurrent.duration._
 
 
 @Api(value = "/analyze", produces = "application/json")
@@ -23,7 +24,7 @@ class AnalyserService(analyzerActorRef: ActorRef)(implicit executionContext: Exe
   implicit val jsonFormats = jsonHelper.formats
   implicit val jsonWritePretty = ShouldWritePretty.True
   implicit val jsonSerialization = Serialization
-  implicit val timeout = Timeout(2.seconds)
+  implicit val timeout = Timeout(10.seconds)
 
 
   val route = getAnalysis
