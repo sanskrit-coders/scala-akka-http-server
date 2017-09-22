@@ -49,7 +49,10 @@ class HelloService(hello: ActorRef)(implicit executionContext: ExecutionContext)
   def getHelloSegment =
     path("hello" / Segment) { name =>
       get {
-        complete { (hello ? Hello(name)).mapTo[Greeting] }
+        complete {
+          (hello ? Hello(name))  // Send Hello(name) to hello actor, get response in a Future object.
+          .mapTo[Greeting]
+        }
       }
     }
 }
