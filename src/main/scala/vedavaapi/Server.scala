@@ -1,10 +1,15 @@
 package vedavaapi
 
+import java.io.File
+
 import akka.actor.{ActorSystem, Props}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.RouteConcatenation
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
+import dbUtils.jsonHelper
+import org.json4s.DefaultFormats
+import org.json4s.native.Serialization
 import vedavaapi.hello.{HelloActor, HelloService}
 import vedavaapi.swagger.SwaggerDocService
 import sanskrit_coders.scl.{Analyser, AnalyserActor}
@@ -13,9 +18,9 @@ import scl.grammar.analyzer.AnalyserService
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.Source
 
-case class ServerConfig(deployment_directory: Option[String], serverUrl: Option[String])
+case class ServerConfig(deployment_directory: Option[String])
 
-object Rest extends App with RouteConcatenation {
+object Server extends App with RouteConcatenation {
   implicit val system = ActorSystem("akka-http-server")
   sys.addShutdownHook(system.terminate())
 
@@ -24,13 +29,14 @@ object Rest extends App with RouteConcatenation {
 
   val hello = system.actorOf(Props[HelloActor])
 
-  // TODO Read as instance of ServerConfig and use.
-  val serverConfig =  Source.fromResource("server_config.json").toString()
+  implicit val jsonFormats = DefaultFormats
+  val serverConfigStr =  Source.fromResource("server_config_local.json").getLines().mkString(" ")
+  val serverConfig = Serialization.read[ServerConfig](serverConfigStr)
 
   //  val binLocation = getClass.getResource("/scl_bin/all_morf.bin").getPath
-  val binLocation = "/home/vvasuki/scala-akka-http-server/src/main/resources/scl_bin/all_morf.bin"
+  val binLocation = new File(serverConfig.deployment_directory.get,   "src/main/resources/scl_bin").getAbsolutePath
 
-  val analyser = new Analyser(binFilePath = binLocation)
+  val analyser = new Analyser(binFilePath = new File(binLocation, "all_morf.bin").getAbsolutePath)
   val analyserActor = system.actorOf(
     Props(classOf[AnalyserActor], analyser))
   val routes =

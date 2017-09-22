@@ -1,6 +1,8 @@
 *.class
 *.log
 
+server_config_local.json
+
 # sbt specific
 .cache
 .history

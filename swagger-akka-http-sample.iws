@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7a811a0-b4be-4c29-98cd-166eb9ccce58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/db-interface-2.5.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/sanskrit-lttoolbox-0.3.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/server_config_template.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/scl/grammar/analyzer/AnalyserService.scala" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/db-interface.iml" afterPath="$USER_HOME$/db-interface/db-interface.iml" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/pom.xml" afterPath="$USER_HOME$/db-interface/pom.xml" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/src/main/scala/dbSchema/grammar/Analysis.scala" afterPath="$USER_HOME$/db-interface/src/main/scala/dbSchema/grammar/Analysis.scala" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala" afterPath="$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/sanskrit-lttoolbox/pom.xml" afterPath="$USER_HOME$/sanskrit-lttoolbox/pom.xml" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/sanskrit-lttoolbox/sanskrit-lttoolbox.iml" afterPath="$USER_HOME$/sanskrit-lttoolbox/sanskrit-lttoolbox.iml" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Analyser.scala" afterPath="$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Analyser.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala" afterPath="$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vedavaapi/hello/HelloService.scala" afterPath="$PROJECT_DIR$/src/main/scala/vedavaapi/hello/HelloService.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala" afterPath="$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger-akka-http-sample.ipr" afterPath="$PROJECT_DIR$/swagger-akka-http-sample.ipr" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala" afterPath="$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/server_config_template.json" afterPath="$PROJECT_DIR$/src/main/resources/server_config_template.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger-akka-http-sample.iws" afterPath="$PROJECT_DIR$/swagger-akka-http-sample.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,111 +33,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AnalyserService.scala" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/analyzer/AnalyserService.scala">
+      <file leaf-file-name="Server.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="225">
+              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
               <folding>
-                <element signature="e#30#53#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/sanskrit-lttoolbox/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.sbt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.sbt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jsonHelper.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding>
-                <element signature="e#17#75#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rest.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="38" column="20" lean-forward="true" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-              <folding>
-                <element signature="e#19#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server_config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/server_config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server_config_template.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Analyser.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Analyser.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="31" column="48" lean-forward="false" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-              <folding>
-                <element signature="e#29#68#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LtToolboxCommandWrapper.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/common/LtToolboxCommandWrapper.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HelloService.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/hello/HelloService.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="e#25#48#0" expanded="true" />
+                <element signature="e#19#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -201,10 +90,12 @@
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala" />
         <option value="$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala" />
-        <option value="$PROJECT_DIR$/src/main/resources/server_config_template.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/server_config.json" />
-        <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/scl/grammar/analyzer/AnalyserService.scala" />
+        <option value="$PROJECT_DIR$/src/main/resources/server_config.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/server_config_template.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala" />
       </list>
     </option>
   </component>
@@ -266,13 +157,6 @@
               <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
@@ -555,7 +439,7 @@
       <updated>1505931201381</updated>
       <workItem from="1505931283902" duration="30653000" />
       <workItem from="1506107387017" duration="594000" />
-      <workItem from="1506108047579" duration="3173000" />
+      <workItem from="1506108047579" duration="4935000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade scala version">
       <created>1506111245933</created>
@@ -564,11 +448,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506111245933</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add Analyser actor.">
+      <created>1506111327136</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1506111327136</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34420000" />
+    <option name="totallyTimeSpent" value="36182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -620,7 +511,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Upgrade scala version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgrade scala version" />
+    <MESSAGE value="Add Analyser actor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Analyser actor." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -667,7 +559,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#17#53#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -681,12 +575,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
           <folding>
-            <element signature="e#19#57#0" expanded="true" />
+            <element signature="e#19#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -749,7 +643,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#17#53#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -763,12 +659,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="20" />
           <folding>
-            <element signature="e#19#57#0" expanded="true" />
+            <element signature="e#19#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -851,14 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/resources/scriptFile.scala" />
     <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/AnalyzerActor.scala" />
     <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Generators.scala">
@@ -906,14 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/db-interface/2.1/db-interface-2.1-sources.jar!/dbUtils/jsonHelper.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/scriptFile.scala" />
     <entry file="jar://$USER_HOME$/.ivy2/cache/de.heikoseeberger/akka-http-json4s_2.12/srcs/akka-http-json4s_2.12-1.19.0-M2-sources.jar!/de/heikoseeberger/akkahttpjson4s/Json4sSupport.scala">
       <provider selected="true" editor-type-id="text-editor">
@@ -935,17 +815,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/sanskrit-lttoolbox/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.sbt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
+        <state relative-caret-position="425">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
@@ -956,16 +828,6 @@
         <state relative-caret-position="72">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding>
-            <element signature="e#17#75#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,10 +849,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/server_config.json">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        <state relative-caret-position="18">
+          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1005,30 +867,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
+    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Rest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="38" column="20" lean-forward="true" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        <state relative-caret-position="227">
+          <caret line="71" column="34" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="34" />
           <folding>
-            <element signature="e#19#57#0" expanded="true" />
+            <element signature="e#17#75#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/analyzer/AnalyserService.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="135">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="e#30#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_local.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/sanskrit-lttoolbox/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/db-interface/2.1/db-interface-2.1-sources.jar!/dbUtils/jsonHelper.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="43" />
+          <folding>
+            <element signature="e#17#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="e#19#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
