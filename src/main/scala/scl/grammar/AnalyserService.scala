@@ -17,8 +17,8 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 import akka.pattern.{ ask, pipe }
 
-@Api(value = "/analyse", produces = "application/json")
-@Path("/analyse")
+@Api(value = "/grammar/v1/analyser", produces = "application/json")
+@Path("/grammar/v1/analyser")
 class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: ExecutionContext)
   extends Directives with Json4sSupport {
   implicit val jsonFormats = jsonHelper.formats
@@ -39,7 +39,7 @@ class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: Exe
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getAnalysis =
-    path("analyse" / Segment) { word =>
+    path("grammar" / "v1" / "analyser" / Segment) { word =>
       get {
         complete {
           ask(analyserActorRef, word)
