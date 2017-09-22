@@ -327,7 +327,7 @@
     </configuration>
   </component>
   <component name="ScalaCompilerConfiguration">
-    <profile name="SBT 1" modules="sanskrit-lttoolbox,db-interface,scala-akka-http-server" />
+    <profile name="SBT 1" modules="db-interface,sanskrit-lttoolbox,scala-akka-http-server" />
   </component>
   <component name="ScalaSbtSettings">
     <option name="linkedExternalProjectsSettings">
@@ -375,17 +375,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.29/logback-core-0.9.29-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.github.sanskrit-coders:db-interface:2.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/db-interface/2.1/db-interface-2.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/db-interface/2.1/db-interface-2.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/db-interface/2.1/db-interface-2.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.github.sanskrit-coders:indic-transliteration:1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.1/indic-transliteration-1.1.jar!/" />
@@ -395,17 +384,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.1/indic-transliteration-1.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.thoughtworks.paranamer:paranamer:2.6">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.thoughtworks.paranamer:paranamer:2.8">
@@ -452,17 +430,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-csv/1.4/commons-csv-1.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.json4s:json4s-ast_2.11:3.2.11">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.11/3.2.11/json4s-ast_2.11-3.2.11.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.11/3.2.11/json4s-ast_2.11-3.2.11-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.11/3.2.11/json4s-ast_2.11-3.2.11-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.json4s:json4s-ast_2.12:3.5.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.12/3.5.2/json4s-ast_2.12-3.5.2.jar!/" />
@@ -474,17 +441,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-ast_2.12/3.5.2/json4s-ast_2.12-3.5.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.json4s:json4s-core_2.11:3.2.11">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.11/3.2.11/json4s-core_2.11-3.2.11.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.11/3.2.11/json4s-core_2.11-3.2.11-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.11/3.2.11/json4s-core_2.11-3.2.11-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.json4s:json4s-core_2.12:3.5.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.12/3.5.2/json4s-core_2.12-3.5.2.jar!/" />
@@ -494,17 +450,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-core_2.12/3.5.2/json4s-core_2.12-3.5.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.json4s:json4s-native_2.11:3.2.11">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-native_2.11/3.2.11/json4s-native_2.11-3.2.11.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-native_2.11/3.2.11/json4s-native_2.11-3.2.11-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-native_2.11/3.2.11/json4s-native_2.11-3.2.11-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.json4s:json4s-native_2.12:3.5.2">
@@ -529,17 +474,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s-scalap_2.12/3.5.2/json4s-scalap_2.12-3.5.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.json4s:json4s_2.11:3.2.11">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s_2.11/3.2.11/json4s_2.11-3.2.11.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s_2.11/3.2.11/json4s_2.11-3.2.11-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/json4s/json4s_2.11/3.2.11/json4s_2.11-3.2.11-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.scala-lang.modules:scala-java8-compat_2.12.0-M5:0.8.0-RC3">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-java8-compat_2.12.0-M5/0.8.0-RC3/scala-java8-compat_2.12.0-M5-0.8.0-RC3.jar!/" />
@@ -551,28 +485,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-java8-compat_2.12.0-M5/0.8.0-RC3/scala-java8-compat_2.12.0-M5-0.8.0-RC3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.scala-lang.modules:scala-xml_2.11:1.0.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.11/1.0.1/scala-xml_2.11-1.0.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.11/1.0.1/scala-xml_2.11-1.0.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.11/1.0.1/scala-xml_2.11-1.0.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.scala-lang.modules:scala-xml_2.12:1.0.6">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6.jar!/" />
@@ -582,17 +494,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.scala-lang:scala-compiler:2.11.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.11.0/scala-compiler-2.11.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.11.0/scala-compiler-2.11.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.11.0/scala-compiler-2.11.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.scala-lang:scala-library:2.12.2" type="Scala">
@@ -614,17 +515,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.12.2/scala-library-2.12.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.scala-lang:scala-reflect:2.11.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.11.0/scala-reflect-2.11.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.11.0/scala-reflect-2.11.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.11.0/scala-reflect-2.11.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.scala-lang:scala-xml:2.11.0-M4">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-xml/2.11.0-M4/scala-xml-2.11.0-M4.jar!/" />
@@ -634,17 +524,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-xml/2.11.0-M4/scala-xml-2.11.0-M4-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.scala-lang:scalap:2.11.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scalap/2.11.0/scalap-2.11.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scalap/2.11.0/scalap-2.11.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scalap/2.11.0/scalap-2.11.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.slf4j:slf4j-api:1.6.1">

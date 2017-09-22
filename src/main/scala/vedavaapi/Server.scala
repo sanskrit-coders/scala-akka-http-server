@@ -9,8 +9,8 @@ import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import org.json4s.DefaultFormats
 import org.json4s.native.Serialization
-import sanskrit_coders.scl.{Analyser, AnalyserActor}
-import scl.grammar.AnalyserService
+import sanskrit_coders.scl._
+import scl.grammar.{AnalyserService, GeneratorService}
 import vedavaapi.swagger.SwaggerDocService
 
 import scala.concurrent.ExecutionContextExecutor
@@ -36,6 +36,10 @@ object Server extends App with RouteConcatenation {
   val analyser = new Analyser(binFilePath = new File(binLocation, "all_morf.bin").getAbsolutePath)
   val analyserActor = system.actorOf(
     Props(classOf[AnalyserActor], analyser))
+  val subantaGenerator = new SubantaGenerator(binFilePath = new File(binLocation, "sup_gen.bin").getAbsolutePath)
+  val tinantaGenerator = new TinantaGenerator(binFilePath = new File(binLocation, "wif_gen.bin").getAbsolutePath)
+  val generatorActor = system.actorOf(
+    Props(classOf[GeneratorActor], subantaGenerator, tinantaGenerator))
 
 
   //////// Done initializing actors.
@@ -44,6 +48,7 @@ object Server extends App with RouteConcatenation {
   val routes =
     cors() {concat(
       new AnalyserService(analyserActor).route,
+      new GeneratorService(generatorActor).route,
       SwaggerDocService.routes)  // Corresponds to : api-docs/
     }
   Http().bindAndHandle(routes, "0.0.0.0", 9090)

@@ -35,7 +35,7 @@ class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: Exe
     new ApiImplicitParam(name = "word", value = "Word to analyse, in HK", required = true, dataType = "string", paramType = "path")
   ))
   @ApiResponses(Array(
-    new ApiResponse(code = 200, message = "Return Analysis", response = classOf[SclAnalysis]),
+    new ApiResponse(code = 200, message = "Return Analysis", response = classOf[Seq[SclAnalysis]]),
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getAnalysis =
