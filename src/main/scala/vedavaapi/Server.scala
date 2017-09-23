@@ -44,9 +44,15 @@ object Server extends App with RouteConcatenation {
 
   //////// Done initializing actors.
 
+  import akka.http.scaladsl.server.Directives._
+  import akka.http.scaladsl.model.StatusCodes
+
   // Set up the routes.
   val routes =
     cors() {concat(
+      path("") {
+        redirect("swagger", StatusCodes.TemporaryRedirect)
+      },
       new AnalyserService(analyserActor).route,
       new GeneratorService(generatorActor).route,
       new SwaggerUIService().route,
