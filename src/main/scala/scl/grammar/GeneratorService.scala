@@ -3,7 +3,7 @@ package scl.grammar
 import javax.ws.rs.Path
 
 import akka.actor.ActorRef
-import akka.http.scaladsl.server.Directives
+import akka.http.scaladsl.server.{Directives, Route}
 import akka.pattern.ask
 import akka.util.Timeout
 import dbSchema.grammar._
@@ -27,7 +27,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
   implicit val timeout = Timeout(10.seconds)
 
 
-  val route = generateSubanta ~ generateTinanta
+  val route: Route = concat(generateSubanta, generateTinanta)
 
   @Path("/praatipadikas/{prakaara}/{linga}/{root}/{vibhaktiIn}/{vachana}")
   @ApiOperation(value = "Return declension", notes = "", nickname = "Analyse", httpMethod = "GET")

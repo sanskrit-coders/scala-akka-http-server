@@ -11,7 +11,7 @@ import org.json4s.DefaultFormats
 import org.json4s.native.Serialization
 import sanskrit_coders.scl._
 import scl.grammar.{AnalyserService, GeneratorService}
-import vedavaapi.swagger.SwaggerDocService
+import vedavaapi.swagger.{SwaggerDocService, SwaggerUIService}
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.Source
@@ -49,6 +49,7 @@ object Server extends App with RouteConcatenation {
     cors() {concat(
       new AnalyserService(analyserActor).route,
       new GeneratorService(generatorActor).route,
+      new SwaggerUIService().route,
       SwaggerDocService.routes)  // Corresponds to : api-docs/
     }
   Http().bindAndHandle(routes, "0.0.0.0", 9090)
