@@ -6,7 +6,7 @@ import akka.actor.ActorRef
 import akka.http.scaladsl.server.Directives
 import akka.pattern.ask
 import akka.util.Timeout
-import dbSchema.grammar.{Praatipadika, SclAnalysis, Subanta, SupVibhakti}
+import dbSchema.grammar._
 import dbUtils.jsonHelper
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport.ShouldWritePretty
@@ -27,10 +27,10 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
   implicit val timeout = Timeout(10.seconds)
 
 
-  val route = generateSubanta
+  val route = generateSubanta ~ generateTinanta
 
   @Path("/praatipadikas/{prakaara}/{linga}/{root}/{vibhaktiIn}/{vachana}")
-  @ApiOperation(value = "Return Analysis of a word", notes = "", nickname = "Analyse", httpMethod = "GET")
+  @ApiOperation(value = "Return declension", notes = "", nickname = "Analyse", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "prakaara", allowableValues = "sAXAraNa,sarvanAma,safkhyA,safkhyeya,pUraNa", value = "Click on 'Try it out'!", required = true, dataType = "string", paramType = "path"),
     new ApiImplicitParam(name = "linga", allowableValues = "pum,napum,swrI", value = "Click on 'Try it out'!", required = true, dataType = "string", paramType = "path"),
@@ -57,4 +57,47 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
       }
     }
 
+  // Sample line to be parsed: cur1,curaz,curAxiH,sweye
+  // Size of this map: some multiple of 74kb, which is the file size.
+  // One can optimize for memory by not preconstructing the Dhaatu objects, and just storing the sclCode as map values.
+  val dhaatuMap = scala.io.Source.fromInputStream(is = getClass.getResource("/scl_bin/scl_dhAtu_list.csv").openStream()).getLines().
+    map(line => line.split(",")).filter(_.length == 4).map(x =>
+    Tuple2(s"${x(1)},${x(2)},${x(3)}", new Dhaatu(aupadeshikaDhaatu = Some(x(1)), artha = Some(x(3)), gaNa = Some(x(2)), sclCode = Some(x(0))))).toMap
+
+
+  @Path("/dhaatus/{gaNa}/{dhaatu}/{artha}/{prayoga}/{lakaara}/{puruSha}/{vachana}/{kimpadI}")
+  @ApiOperation(value = "Return conjugation", notes = "", nickname = "Analyse", httpMethod = "GET")
+  @ApiImplicitParams(Array(
+    new ApiImplicitParam(allowableValues = "axAxiH,BvAxiH,curAxiH,juhowyAxiH,kryAxiH,ruXAxiH,svAxiH,wanAxiH,wuxAxiH,XAwu,xivAxiH", value = "Click on 'Try it out'!", name = "gaNa", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(value = "dhAtupATha root in WX. Example: curaz", example = "curaz", name = "dhaatu", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(value = "dhAtupATha meaning in WX. Example: sweye", example = "sweye", name = "artha", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(allowableValues = "karwari,karmaNi", value = "Click on 'Try it out'!", name = "prayoga", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(allowableValues = "lat,lit,let,lut,lqt,lot,laf,lif,luf,lqf", value = "Click on 'Try it out'!", name = "lakaara", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(allowableValues = "pra,ma,u", value = "Click on 'Try it out'!", name = "puruSha", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(allowableValues = "eka,xwi,bahu", value = "Click on 'Try it out'!", name = "vachana", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(allowableValues = "parasmEpaxI,AwmanepaxI", value = "Click on 'Try it out'!", name = "kimpadI", required = true, dataType = "string", paramType = "path")))
+  @ApiResponses(Array(
+    new ApiResponse(code = 200, message = "pada-s", response = classOf[Seq[String]]),
+    new ApiResponse(code = 404, message = "Root not found"),
+    new ApiResponse(code = 500, message = "Internal server error")
+  ))
+  def generateTinanta =
+    path("grammar" / "v1" / "generators" / "dhaatus" / Segment / Segment / Segment / Segment / Segment / Segment / Segment / Segment) {
+      (gaNa: String, dhaatu: String, artha: String, prayoga: String, lakaara: String, puruSha: String, vachana: String, kimpadI: String) => {
+        get {
+          val dhaatuKey = s"${dhaatu},${gaNa},${artha}"
+          val dhaatuObj = dhaatuMap.get(dhaatuKey)
+          if (dhaatuObj == None) {
+            complete("404")
+          } else {
+            complete {
+              val vivaxaa = new TinVivaxaa(prayoga = Some(prayoga), kimpadI = Some(kimpadI), lakaara = Some(lakaara), puruSha = Some(puruSha), vachana = Some(vachana))
+              val tingantaIn = Tinanta(pada = None, dhaatu = dhaatuObj, vivaxaa = Some(vivaxaa))
+              ask(generatorActorRef, tingantaIn)
+                .mapTo[Seq[String]]
+            }
+          }
+        }
+      }
+    }
 }
