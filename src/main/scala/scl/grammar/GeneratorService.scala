@@ -43,7 +43,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def generateSubanta =
-    path("grammar" / "v1" / "generators" / "praatipadikas" / Segment / Segment / Segment / Segment / Segment) {
+    path("grammar" / "v1" / "generators" / "praatipadikas" / Segment / Segment / Segment / Segment / Segment) (
       (prakaara: String, linga: String, root: String, vibhaktiIn: String, vachana: String) => {
         get {
           complete {
@@ -55,7 +55,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
           }
         }
       }
-    }
+    )
 
   // Sample line to be parsed: cur1,curaz,curAxiH,sweye
   // Size of this map: some multiple of 74kb, which is the file size.
@@ -82,7 +82,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def generateTinanta =
-    path("grammar" / "v1" / "generators" / "dhaatus" / Segment / Segment / Segment / Segment / Segment / Segment / Segment / Segment) {
+    path("grammar" / "v1" / "generators" / "dhaatus" / Segment / Segment / Segment / Segment / Segment / Segment / Segment / Segment) (
       (gaNa: String, dhaatu: String, artha: String, prayoga: String, lakaara: String, puruSha: String, vachana: String, kimpadI: String) => {
         get {
           val dhaatuKey = s"${dhaatu},${gaNa},${artha}"
@@ -99,5 +99,5 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
           }
         }
       }
-    }
+    )
 }

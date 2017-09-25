@@ -39,13 +39,13 @@ class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: Exe
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getAnalysis =
-    path("grammar" / "v1" / "analyser" / Segment) { word =>
+    path("grammar" / "v1" / "analyser" / Segment) ( word =>
       get {
         complete {
           ask(analyserActorRef, word)
             .mapTo[Seq[SclAnalysis]]
         }
       }
-    }
+    )
 
 }

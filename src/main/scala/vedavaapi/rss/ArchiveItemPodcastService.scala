@@ -69,7 +69,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getPodcast =
-    path("podcasts" / "v1" / "archiveItems" / Segment) {
+    path("podcasts" / "v1" / "archiveItems" / Segment) (
       (archiveId: String) => {
         get {
           complete {
@@ -77,5 +77,5 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
           }
         }
       }
-    }
+    )
 }
