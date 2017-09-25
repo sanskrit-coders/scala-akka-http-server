@@ -34,17 +34,22 @@ class ArchiveReaderActor extends Actor
       val uri = f"http://archive.org/metadata/$archiveId"
       // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
       val responseFuture = http.singleRequest(HttpRequest(uri = uri))
-      responseFuture.map(response => response match {
+      val responseStringFuture = responseFuture.flatMap(response => response match {
         case HttpResponse(StatusCodes.OK, headers, entity, _) =>
           // The below is a Future[String] which is filled when the stream is read. That future is what we return!
           entity.dataBytes.runFold(ByteString(""))(_ ++ _).map(_.utf8String)
         case resp@HttpResponse(code, _, _, _) =>
           val message = "Request failed, response code: " + code
           log.warning(message = message)
-          //          Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
+          // Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
           resp.discardEntityBytes()
           Future.failed(new Exception(message))
-      }).pipeTo(sender())
+      })
+      val podcastFuture = responseStringFuture.map(responseString => {
+        log.debug(responseString)
+        responseString
+      })
+      podcastFuture.pipeTo(sender())
     }
   }
 
@@ -59,10 +64,14 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   implicit val jsonSerialization = Serialization
   implicit val timeout = Timeout(10.seconds)
 
+  val route = getPodcast
+
   @Path("/archiveItems/{archiveId}")
   @ApiOperation(value = "Return the podcast corresponding to an archive item", notes = "", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
-    new ApiImplicitParam(name = "archiveId", value = "Word to analyse, in HK", required = true, dataType = "string", paramType = "path")
+    new ApiImplicitParam(name = "archiveId", value = "Word to analyse, in HK",
+      example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
+      required = true, dataType = "string", paramType = "path")
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
