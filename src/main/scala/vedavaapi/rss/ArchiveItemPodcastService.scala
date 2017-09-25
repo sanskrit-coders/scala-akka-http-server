@@ -13,8 +13,10 @@ import dbUtils.jsonHelper
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport.ShouldWritePretty
 import io.swagger.annotations._
-import org.json4s.native.Serialization
+import org.json4s.native.{JsonMethods, Serialization}
 import akka.pattern.{ask, pipe}
+import dbSchema.archive.ItemInfo
+import org.json4s.DefaultFormats
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
@@ -47,7 +49,8 @@ class ArchiveReaderActor extends Actor
       })
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
-        responseString
+        val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
+        jsonHelper.asString(archiveItem)
       })
       podcastFuture.pipeTo(sender())
     }
@@ -67,7 +70,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   val route = getPodcast
 
   @Path("/archiveItems/{archiveId}")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item", notes = "", nickname = "getPodcast", httpMethod = "GET")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Since the return value is not a JSON, you cannot hit 'Try it out' on swagger UI. You'll have to open the request url in a separate tab.", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveId", value = "Word to analyse, in HK",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
@@ -82,7 +85,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       (archiveId: String) => {
         get {
           complete {
-            ask(archiveReaderActorRef, archiveId).mapTo[Future[String]]
+            ask(archiveReaderActorRef, archiveId).mapTo[String]
           }
         }
       }
