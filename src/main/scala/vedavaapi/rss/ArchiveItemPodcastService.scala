@@ -50,7 +50,7 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        jsonHelper.asString(archiveItem)
+        archiveItem.toPodcast(audioFileExtension = "mp3").getNode().toString()
       })
       podcastFuture.pipeTo(sender())
     }
