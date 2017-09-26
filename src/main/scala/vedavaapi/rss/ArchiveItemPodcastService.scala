@@ -58,13 +58,11 @@ class ArchiveReaderActor extends Actor
 
 }
 
+// Returns text/plain , so does not extend Json4sSupport trait unlike some other REST API services.
 @Api(value = "/podcasts/v1", produces = "text/plain")
 @Path("/podcasts/v1")
 class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext)
-  extends Directives with Json4sSupport {
-  implicit val jsonFormats = jsonHelper.formats
-  implicit val jsonWritePretty = ShouldWritePretty.True
-  implicit val jsonSerialization = Serialization
+  extends Directives {
   implicit val timeout = Timeout(10.seconds)
 
   val route = getPodcast
@@ -84,9 +82,9 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     path("podcasts" / "v1" / "archiveItems" / Segment) (
       (archiveId: String) => {
         get {
-          complete {
-            ask(archiveReaderActorRef, archiveId).mapTo[String]
-          }
+          onSuccess(ask(archiveReaderActorRef, archiveId).mapTo[String]) (
+            podcastFeed => complete(podcastFeed)
+          )
         }
       }
     )
