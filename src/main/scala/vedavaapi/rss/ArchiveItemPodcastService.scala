@@ -1,5 +1,6 @@
 package vedavaapi.rss
 
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 import javax.ws.rs.Path
 
@@ -23,7 +24,7 @@ import org.json4s.DefaultFormats
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String)
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", categories: Seq[String], isExplicitYesNo: Option[String] = None)
 
 class ArchiveReaderActor extends Actor
   with ActorLogging {
@@ -54,7 +55,8 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(audioFileExtension = "mp3", publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl).getNode().toString()
+        archiveItem.toPodcast(audioFileExtension = "mp3", publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl,
+          languageCode = podcastRequest.languageCode, categories = podcastRequest.categories, isExplicitYesNo = podcastRequest.isExplicitYesNo).getNode().toString()
       })
       podcastFuture.pipeTo(sender())
     }
@@ -74,19 +76,29 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   val route = getPodcast
 
   @Path("/archiveItems/{archiveId}")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Since the return value is not a JSON, you cannot hit 'Try it out' on swagger UI. You'll have to open the request url in a separate tab.", nickname = "getPodcast", httpMethod = "GET")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out!\n You can submit the generated podcast to indices like Google Play and ITunes.", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
       required = true, dataType = "string", paramType = "path"),
-    new ApiImplicitParam(name = "publisherEmail", value = "The desired feed publisher email id.",
+    new ApiImplicitParam(name = "publisherEmail", value = "This may be used to verify your authority to submit the feed to indices like (say) Google Play. So, use an address you can access.",
       example = "podcast-bhaaratii@googlegroups.com",
       defaultValue = "podcast-bhaaratii@googlegroups.com",
       required = true, dataType = "string", paramType = "query"),
-  new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url. According to Google Play, image must be square and over 1200 x 1200.",
-    example = "https://i.imgur.com/IsfZpd0.jpg",
-    defaultValue = "https://i.imgur.com/IsfZpd0.jpg",
-    required = false, dataType = "string", paramType = "query")
+    new ApiImplicitParam(name = "languageCode", value = "The language should be specified according to RFC 3066, RFC 4647 and RFC 5646. List: http://www.loc.gov/standards/iso639-2/php/code_list.php .",
+      example = "en",
+      defaultValue = "en",
+      required = true, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "categoriesCsv", value = "Only certain categories are valid, see: https://support.google.com/googleplay/podcasts/answer/6260341#rpt for Google Play and https://www.seriouslysimplepodcasting.com/itunes-podcast-category-list/ for ITunes.",
+      example = "Arts, Business, Comedy, Education, Games & Hobbies, Government & Organizations, Health, Kids & Family, Music, News & Politics, Religion & Spirituality, Science & Medicine, Society & Culture, Sports & Recreation, TV & Film, Technology",
+      defaultValue = "Society & Culture",
+      required = false, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url. According to Google Play, image must be square and over 1200 x 1200.",
+      example = "https://i.imgur.com/IsfZpd0.jpg",
+      defaultValue = "https://i.imgur.com/IsfZpd0.jpg",
+      required = false, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "isExplicitYesNo", allowableValues = "Yes, No",
+      required = false, dataType = "string", paramType = "query"),
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
@@ -95,9 +107,9 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/IsfZpd0.jpg")((publisherEmail, imageUrl) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/IsfZpd0.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ?)((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo) => {
           get {
-            onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, imageUrl = imageUrl)).mapTo[String])(
+            (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") & onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = isExplicitYesNo)).mapTo[String])) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }

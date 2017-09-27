@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7a811a0-b4be-4c29-98cd-166eb9ccce58" name="Default" comment="Set content type properly, fix typo">
+    <list default="true" id="a7a811a0-b4be-4c29-98cd-166eb9ccce58" name="Default" comment="Make timeout variable.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/db-interface-2.6.jar" afterPath="$PROJECT_DIR$/lib/db-interface-2.6.jar" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/FileInfo.scala" afterPath="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/FileInfo.scala" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala" afterPath="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/db-interface/src/main/scala/dbSchema/rss/Podcast.scala" afterPath="$USER_HOME$/db-interface/src/main/scala/dbSchema/rss/Podcast.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" afterPath="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger-akka-http-sample.iws" afterPath="$PROJECT_DIR$/swagger-akka-http-sample.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,38 +38,22 @@
       <file leaf-file-name="ArchiveItemPodcastService.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="22" />
+            <state relative-caret-position="-439">
+              <caret line="118" column="9" lean-forward="false" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
               <folding>
                 <element signature="e#23#46#0" expanded="true" />
-                <element signature="e#897#921#0" expanded="true" />
+                <element signature="e#1147#1171#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Podcast.scala" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/rss/Podcast.scala">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/db-interface/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="104" column="17" lean-forward="false" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
-              <folding>
-                <element signature="e#22#55#0" expanded="true" />
-                <marker date="1506483550000" expanded="true" signature="3967:4006" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4081:4128" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4156:4225" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4252:4306" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4345:4385" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4488:4557" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4577:4640" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4682:4729" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4755:4810" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4835:5030" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4861:4918" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="4945:5004" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="5141:5170" ph="..." />
-                <marker date="1506483550000" expanded="true" signature="5198:5264" ph="..." />
-              </folding>
+            <state relative-caret-position="245">
+              <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -76,70 +61,50 @@
       <file leaf-file-name="ItemInfo.scala" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="97" lean-forward="false" selection-start-line="18" selection-start-column="97" selection-end-line="18" selection-end-column="97" />
+            <state relative-caret-position="270">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileInfo.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FileInfo.scala" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/FileInfo.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
+            <state relative-caret-position="317">
+              <caret line="27" column="11" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContentType.scala" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/akka/http/scaladsl/model/ContentType.scala">
+      <file leaf-file-name="ActorSystem.scala" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/akka/actor/ActorSystem.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
-              <caret line="120" column="84" lean-forward="false" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="84" />
+            <state relative-caret-position="-1765">
+              <caret line="326" column="56" lean-forward="false" selection-start-line="326" selection-start-column="49" selection-end-line="326" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MediaType.scala" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/akka/http/scaladsl/model/MediaType.scala">
+      <file leaf-file-name="AnalyserService.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/AnalyserService.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-882">
-              <caret line="343" column="6" lean-forward="false" selection-start-line="343" selection-start-column="6" selection-end-line="343" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="63" column="35" lean-forward="false" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwaggerDocService.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="23" />
+            <state relative-caret-position="479">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
-                <element signature="e#27#79#0" expanded="true" />
+                <element signature="e#21#57#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scala-akka-http-server-test.service" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server-test.service">
+      <file leaf-file-name="server_config_template.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="72">
+              <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -157,16 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>com.example.akka</find>
-      <find>marshal</find>
-      <find>analyze</find>
-      <find>allo</find>
-      <find>/analyse</find>
-      <find>@ApiParam</find>
-      <find>Swa</find>
-      <find>json</find>
-      <find>content</find>
-      <find>fileInfo.</find>
       <find>`</find>
       <find>itemInfo.</find>
       <find>html-2-rest</find>
@@ -174,6 +129,29 @@
       <find>vvasuki</find>
       <find>duration</find>
       <find>encoder</find>
+      <find>sanskr9</find>
+      <find>publisherEmail</find>
+      <find>owne</find>
+      <find>conf</find>
+      <find>timeout</find>
+      <find>milli</find>
+      <find>akka.</find>
+      <find>config</find>
+      <find>config.</find>
+      <find>log</find>
+      <find>Logger</find>
+      <find>https://i.imgur.com/yAR8bWh.png</find>
+      <find>https://i.imgur.com/aD6xkWQ.jpg</find>
+      <find>en</find>
+      <find>UTF</find>
+      <find>categories</find>
+      <find>categor</find>
+      <find>langua</find>
+      <find>Podca</find>
+      <find>language</find>
+      <find>\n</find>
+      <find>Society</find>
+      <find>item</find>
     </findStrings>
     <replaceStrings>
       <replace>vedavaapi</replace>
@@ -183,7 +161,10 @@
       <replace>&quot;</replace>
       <replace>scala-akka-http-server</replace>
       <replace>vvasuki</replace>
+      <replace>https://i.imgur.com/aD6xkWQ.jpg</replace>
+      <replace>https://i.imgur.com/IsfZpd0.jpg</replace>
       <replace>samskritam</replace>
+      <replace>,</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/launcher</dir>
@@ -218,21 +199,23 @@
         <option value="$USER_HOME$/sanskrit-lttoolbox/pom.xml" />
         <option value="$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Generators.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/swagger/index.html" />
-        <option value="$PROJECT_DIR$/src/main/scala/scl/grammar/AnalyserService.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/scl/grammar/GeneratorService.scala" />
         <option value="$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala" />
         <option value="$USER_HOME$/db-interface/pom.xml" />
-        <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/launcher/scala-akka-http-server-test.service" />
         <option value="$PROJECT_DIR$/launcher/scala-akka-http-server.service" />
-        <option value="$PROJECT_DIR$/src/main/resources/server_config_template.json" />
         <option value="$PROJECT_DIR$/src/main/resources/server_config_local.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/resources/server_config_template.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.conf" />
         <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/scl/grammar/AnalyserService.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/scl/grammar/GeneratorService.scala" />
+        <option value="$PROJECT_DIR$/build.sbt" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala" />
         <option value="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/FileInfo.scala" />
+        <option value="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala" />
         <option value="$USER_HOME$/db-interface/src/main/scala/dbSchema/rss/Podcast.scala" />
       </list>
     </option>
@@ -298,55 +281,6 @@
             </path>
             <path>
               <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="dbSchema" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="dbSchema" type="462c0819:PsiDirectoryNode" />
-              <item name="archive" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="dbSchema" type="462c0819:PsiDirectoryNode" />
-              <item name="rss" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
               <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -373,6 +307,7 @@
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="TEXT" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -599,7 +534,7 @@
     </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
-    <option name="lastUpdateTimestamp" value="1506466807175" />
+    <option name="lastUpdateTimestamp" value="1506494821469" />
     <option name="availableProjects">
       <map>
         <entry>
@@ -642,7 +577,7 @@
       <workItem from="1506107387017" duration="594000" />
       <workItem from="1506108047579" duration="19123000" />
       <workItem from="1506200280175" duration="10645000" />
-      <workItem from="1506312028064" duration="39414000" />
+      <workItem from="1506312028064" duration="60932000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade scala version">
       <created>1506111245933</created>
@@ -833,11 +768,53 @@
       <option name="project" value="LOCAL" />
       <updated>1506477802297</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Generate RSS feed which validates better.">
+      <created>1506485821224</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1506485821224</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Set author better.">
+      <created>1506488472641</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1506488472641</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Make timeout variable.">
+      <created>1506492588798</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1506492588798</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Add image url input">
+      <created>1506495096022</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1506495096022</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fix website info">
+      <created>1506495330426</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1506495330426</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fix default image url.">
+      <created>1506496087125</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1506496087125</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100429000" />
+    <option name="totallyTimeSpent" value="121947000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -888,10 +865,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Upgrade scala version" />
-    <MESSAGE value="Add Analyser actor." />
-    <MESSAGE value="Read config from json" />
-    <MESSAGE value="Update README, delete unneeded services." />
     <MESSAGE value="Fix paths" />
     <MESSAGE value="Fix path" />
     <MESSAGE value="Add Actor" />
@@ -911,7 +884,13 @@
     <MESSAGE value="Set content type properly, fix typo" />
     <MESSAGE value="Fix typo" />
     <MESSAGE value="Add itunesu ns" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add itunesu ns" />
+    <MESSAGE value="Generate RSS feed which validates better." />
+    <MESSAGE value="Set author better." />
+    <MESSAGE value="Make timeout variable." />
+    <MESSAGE value="Add image url input" />
+    <MESSAGE value="Fix website info" />
+    <MESSAGE value="Fix default image url." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix default image url." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -920,115 +899,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/srcs/akka-http_2.12-10.0.10-sources.jar!/akka/http/scaladsl/server/directives/PathDirectives.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/SupVibhakti.scala" />
-    <entry file="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/srcs/swagger-annotations-1.5.16-sources.jar!/io/swagger/annotations/ApiImplicitParams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="30" column="26" lean-forward="false" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/sanskrit-lttoolbox/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/grammar/Subanta.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Generators.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-457">
-          <caret line="98" column="20" lean-forward="false" selection-start-line="98" selection-start-column="6" selection-end-line="98" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/swagger/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="77" column="26" lean-forward="true" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/akka/http/scaladsl/Http.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="536" column="6" lean-forward="false" selection-start-line="536" selection-start-column="6" selection-end-line="536" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/akka/http/scaladsl/model/HttpEntity.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="68" column="6" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.sbt/boot/scala-2.12.3/lib/scala-library.jar!/scala/package.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/share/jdk1.8.0_121/src.zip!/java/lang/Exception.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="52" column="11" lean-forward="false" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/sanskrit-lttoolbox/src/main/scala/sanskrit_coders/scl/Analyser.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#29#68#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/srcs/swagger-annotations-1.5.16-sources.jar!/io/swagger/annotations/ApiImplicitParam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="127" column="18" lean-forward="false" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/GeneratorService.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding>
-            <element signature="e#21#44#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/akka/pattern/PipeToSupport.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/srcs/swagger-annotations-1.5.16-sources.jar!/io/swagger/annotations/ApiResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -1050,16 +920,6 @@
         <state relative-caret-position="117">
           <caret line="29" column="88" lean-forward="false" selection-start-line="29" selection-start-column="88" selection-end-line="29" selection-end-column="88" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding>
-            <element signature="e#17#75#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1119,26 +979,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/db-interface/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/Option.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.sbt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1191,24 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="63" column="35" lean-forward="false" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="23" />
-          <folding>
-            <element signature="e#27#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/srcs/akka-http_2.12-10.0.10-sources.jar!/akka/http/scaladsl/server/Directives.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1221,30 +1047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-543">
           <caret line="48" column="6" lean-forward="false" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/AnalyserService.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/akka/http/scaladsl/model/MediaType.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-882">
-          <caret line="343" column="6" lean-forward="false" selection-start-line="343" selection-start-column="6" selection-end-line="343" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1265,14 +1067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="97" lean-forward="false" selection-start-line="18" selection-start-column="97" selection-end-line="18" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/share/jdk1.8.0_121/src.zip!/java/util/Date.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1284,14 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/share/jdk1.8.0_121/src.zip!/java/net/URLEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="164" column="25" lean-forward="false" selection-start-line="164" selection-start-column="25" selection-end-line="164" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/share/jdk1.8.0_121/src.zip!/java/net/URI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4752">
@@ -1300,46 +1086,243 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/akka/http/scaladsl/model/MediaType.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="22" />
+        <state relative-caret-position="-882">
+          <caret line="343" column="6" lean-forward="false" selection-start-line="343" selection-start-column="6" selection-end-line="343" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/akka/util/Timeout.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.3-sources.jar!/scala/util/Properties.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.3-sources.jar!/scala/App.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/srcs/config-1.3.1-sources.jar!/com/typesafe/config/ConfigFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="365" column="25" lean-forward="false" selection-start-line="365" selection-start-column="25" selection-end-line="365" selection-end-column="25" />
           <folding>
-            <element signature="e#23#46#0" expanded="true" />
-            <element signature="e#897#921#0" expanded="true" />
+            <element signature="e#15033#15034#0" expanded="false" />
+            <element signature="e#15091#15092#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/FileInfo.scala">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/akka/actor/ActorSystem.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1765">
+          <caret line="326" column="56" lean-forward="false" selection-start-line="326" selection-start-column="49" selection-end-line="326" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/srcs/config-1.3.1-sources.jar!/com/typesafe/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="771" column="9" lean-forward="false" selection-start-line="771" selection-start-column="9" selection-end-line="771" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/akka/actor/Actor.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="309" column="6" lean-forward="false" selection-start-line="309" selection-start-column="6" selection-end-line="309" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbUtils/collectionUtils.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbUtils/jsonHelper.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="70" column="41" lean-forward="false" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-api/srcs/slf4j-api-1.7.25-sources.jar!/org/slf4j/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="39" column="97" lean-forward="false" selection-start-line="39" selection-start-column="60" selection-end-line="39" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/AnalyserService.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/swagger/SwaggerDocService.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding>
+            <element signature="e#27#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/srcs/akka-http_2.12-10.0.10-sources.jar!/akka/http/scaladsl/server/directives/ParameterDirectives.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
+          <caret line="67" column="6" lean-forward="false" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sbt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/common/Language.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/share/jdk1.8.0_121/src.zip!/java/net/URLEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="199" column="52" lean-forward="false" selection-start-line="199" selection-start-column="49" selection-end-line="199" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/scl/grammar/GeneratorService.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/Server.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="65" column="122" lean-forward="false" selection-start-line="65" selection-start-column="122" selection-end-line="65" selection-end-column="122" />
+          <folding>
+            <element signature="e#19#38#0" expanded="true" />
+            <element signature="e#1467#1500#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="233" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/db-interface/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/srcs/swagger-annotations-1.5.16-sources.jar!/io/swagger/annotations/ApiImplicitParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="77" column="11" lean-forward="false" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-439">
+          <caret line="118" column="9" lean-forward="false" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
+          <folding>
+            <element signature="e#23#46#0" expanded="true" />
+            <element signature="e#1147#1171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/rss/Podcast.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="104" column="17" lean-forward="false" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+        <state relative-caret-position="315">
+          <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
           <folding>
-            <element signature="e#22#55#0" expanded="true" />
-            <marker date="1506483550000" expanded="true" signature="3967:4006" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4081:4128" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4156:4225" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4252:4306" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4345:4385" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4488:4557" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4577:4640" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4682:4729" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4755:4810" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4835:5030" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4861:4918" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="4945:5004" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="5141:5170" ph="..." />
-            <marker date="1506483550000" expanded="true" signature="5198:5264" ph="..." />
+            <element signature="e#22#41#0" expanded="true" />
+            <marker date="1506546052000" expanded="true" signature="7964:8030" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/FileInfo.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="27" column="11" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
