@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=samskritam
-WorkingDirectory=/home/samskritam/scala-akka-http-server/
+User=vvasuki
+WorkingDirectory=/home/vvasuki/scala-akka-http-server/
 ExecStart=/usr/bin/sbt run
 
 [Install]

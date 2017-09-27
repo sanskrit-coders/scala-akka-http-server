@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7a811a0-b4be-4c29-98cd-166eb9ccce58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/launcher/scala-akka-http-server.service" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/launcher/scala-akka-http-server-test.service" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/launcher/scala-akka-http-server.service" afterPath="$PROJECT_DIR$/launcher/scala-akka-http-server.service" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger-akka-http-sample.iws" afterPath="$PROJECT_DIR$/swagger-akka-http-sample.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,7 +35,7 @@
       <file leaf-file-name="ArchiveItemPodcastService.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="-111">
               <caret line="52" column="78" lean-forward="false" selection-start-line="52" selection-start-column="78" selection-end-line="52" selection-end-column="78" />
               <folding>
                 <element signature="e#23#46#0" expanded="true" />
@@ -47,8 +48,18 @@
       <file leaf-file-name="scala-akka-http-server.service" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server.service">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+            <state relative-caret-position="126">
+              <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scala-akka-http-server-test.service" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server-test.service">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -98,6 +109,8 @@
       <find>fileInfo.</find>
       <find>`</find>
       <find>itemInfo.</find>
+      <find>html-2-rest</find>
+      <find>samskritam</find>
     </findStrings>
     <replaceStrings>
       <replace>vedavaapi</replace>
@@ -105,7 +118,12 @@
       <replace>/grammar/v1/analyser</replace>
       <replace>new ApiImplicitParam</replace>
       <replace>&quot;</replace>
+      <replace>scala-akka-http-server</replace>
+      <replace>vvasuki</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/launcher</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -149,6 +167,7 @@
         <option value="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala" />
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" />
+        <option value="$PROJECT_DIR$/launcher/scala-akka-http-server-test.service" />
         <option value="$PROJECT_DIR$/launcher/scala-akka-http-server.service" />
       </list>
     </option>
@@ -216,6 +235,11 @@
               <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
               <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
+              <item name="launcher" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -242,6 +266,7 @@
       <recent name="vedavaapi" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/launcher" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -503,7 +528,7 @@
       <workItem from="1506107387017" duration="594000" />
       <workItem from="1506108047579" duration="19123000" />
       <workItem from="1506200280175" duration="10645000" />
-      <workItem from="1506312028064" duration="26347000" />
+      <workItem from="1506312028064" duration="26949000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade scala version">
       <created>1506111245933</created>
@@ -638,11 +663,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506470034280</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Add launcher">
+      <created>1506470866241</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1506470866241</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87362000" />
+    <option name="totallyTimeSpent" value="87964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -670,7 +702,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.48479822" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33010754" sideWeight="0.4936429" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.44941956" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49806523" order="1" side_tool="false" content_ui="tabs" />
@@ -710,7 +742,8 @@
     <MESSAGE value="Parsing response tested." />
     <MESSAGE value="Set the right content type" />
     <MESSAGE value="Add code to convert archive item to podcast." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add code to convert archive item to podcast." />
+    <MESSAGE value="Add launcher" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add launcher" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -719,7 +752,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/scriptFile.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/hello/HelloService.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -1091,7 +1123,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="-111">
           <caret line="52" column="78" lean-forward="false" selection-start-line="52" selection-start-column="78" selection-end-line="52" selection-end-column="78" />
           <folding>
             <element signature="e#23#46#0" expanded="true" />
@@ -1100,10 +1132,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server-test.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server.service">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="126">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding />
         </state>
       </provider>
