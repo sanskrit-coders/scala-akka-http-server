@@ -1,6 +1,9 @@
 package vedavaapi.swagger
 
+import java.util.concurrent.TimeUnit
+
 import akka.http.scaladsl.server.{Directives, Route}
+import akka.util.Timeout
 import com.github.swagger.akka.SwaggerHttpService
 import com.github.swagger.akka.model.Info
 import io.swagger.models.ExternalDocs

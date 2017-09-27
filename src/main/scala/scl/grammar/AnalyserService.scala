@@ -1,5 +1,6 @@
 package scl.grammar
 
+import java.util.concurrent.TimeUnit
 import javax.ws.rs.Path
 
 import akka.actor.ActorRef
@@ -15,16 +16,18 @@ import org.json4s.native.Serialization
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
-import akka.pattern.{ ask, pipe }
+import akka.pattern.{ask, pipe}
 
 @Api(value = "/grammar/v1/analyser", produces = "application/json")
 @Path("/grammar/v1/analyser")
-class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: ExecutionContext)
+class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives with Json4sSupport {
   implicit val jsonFormats = jsonHelper.formats
   implicit val jsonWritePretty = ShouldWritePretty.True
   implicit val jsonSerialization = Serialization
-  implicit val timeout = Timeout(10.seconds)
+
+  // Actor ask timeout
+  implicit val timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
 
 
   val route = getAnalysis

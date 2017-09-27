@@ -1,5 +1,6 @@
 package scl.grammar
 
+import java.util.concurrent.TimeUnit
 import javax.ws.rs.Path
 
 import akka.actor.ActorRef
@@ -19,12 +20,14 @@ import akka.pattern.{ask, pipe}
 
 @Api(value = "/grammar/v1/generators", produces = "application/json")
 @Path("/grammar/v1/generators")
-class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: ExecutionContext)
+class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives with Json4sSupport {
   implicit val jsonFormats = jsonHelper.formats
   implicit val jsonWritePretty = ShouldWritePretty.True
   implicit val jsonSerialization = Serialization
-  implicit val timeout = Timeout(10.seconds)
+
+  // Actor ask timeout
+  implicit val timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
 
 
   val route: Route = concat(generateSubanta, generateTinanta)

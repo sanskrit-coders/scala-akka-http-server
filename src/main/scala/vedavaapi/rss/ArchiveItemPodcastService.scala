@@ -1,5 +1,6 @@
 package vedavaapi.rss
 
+import java.util.concurrent.TimeUnit
 import javax.ws.rs.Path
 
 import akka.actor.{Actor, ActorLogging, ActorRef}
@@ -64,9 +65,11 @@ class ArchiveReaderActor extends Actor
 // Returns text/plain , so does not extend Json4sSupport trait unlike some other REST API services.
 @Api(value = "/podcasts/v1", produces = " application/rss+xml")
 @Path("/podcasts/v1")
-class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext)
+class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives {
-  implicit val timeout = Timeout(10.seconds)
+
+  // Actor ask timeout
+  implicit val timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
 
   val route = getPodcast
 
