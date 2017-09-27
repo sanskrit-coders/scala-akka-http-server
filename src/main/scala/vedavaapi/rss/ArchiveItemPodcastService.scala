@@ -83,9 +83,9 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       example = "podcast-bhaaratii@googlegroups.com",
       defaultValue = "podcast-bhaaratii@googlegroups.com",
       required = true, dataType = "string", paramType = "query"),
-  new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url.",
-    example = "https://i.imgur.com/yAR8bWh.png",
-    defaultValue = "https://i.imgur.com/yAR8bWh.png",
+  new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url. According to Google Play, image must be square and over 1200 x 1200.",
+    example = "https://i.imgur.com/IsfZpd0.jpg",
+    defaultValue = "https://i.imgur.com/IsfZpd0.jpg",
     required = false, dataType = "string", paramType = "query")
   ))
   @ApiResponses(Array(
@@ -95,7 +95,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/yAR8bWh.png")((publisherEmail, imageUrl) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/IsfZpd0.jpg")((publisherEmail, imageUrl) => {
           get {
             onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, imageUrl = imageUrl)).mapTo[String])(
               podcastFeed => complete {
