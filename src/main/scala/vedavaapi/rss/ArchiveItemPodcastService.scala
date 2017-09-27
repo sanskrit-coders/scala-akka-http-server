@@ -97,8 +97,8 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       example = "https://i.imgur.com/dQjPQYi.jpg",
       defaultValue = "https://i.imgur.com/dQjPQYi.jpg",
       required = false, dataType = "string", paramType = "query"),
-    new ApiImplicitParam(name = "isExplicitYesNo", allowableValues = "Yes, No",
-      required = false, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "isExplicitYesNo", value = "Required by itunes, recommended by Google Play.", allowableValues = "Yes, No", defaultValue = "No",
+      required = true, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "fileExtensionsCsv", value = "What types of files should we include in the podcast? mp3 is the default value.", example = "mp3",
       required = false, dataType = "string", paramType = "query"),
   ))
@@ -109,11 +109,11 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ?, 'fileExtensionsCsv ? "mp3")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "No", 'fileExtensionsCsv ? "mp3")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv) => {
           get {
             (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
               onSuccess(
-                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = isExplicitYesNo, fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
+                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
