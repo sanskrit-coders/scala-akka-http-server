@@ -23,7 +23,7 @@ import org.json4s.DefaultFormats
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String)
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String)
 
 class ArchiveReaderActor extends Actor
   with ActorLogging {
@@ -54,7 +54,7 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(audioFileExtension = "mp3", publisherEmail = podcastRequest.publisherEmail).getNode().toString()
+        archiveItem.toPodcast(audioFileExtension = "mp3", publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl).getNode().toString()
       })
       podcastFuture.pipeTo(sender())
     }
@@ -82,7 +82,11 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     new ApiImplicitParam(name = "publisherEmail", value = "The desired feed publisher email id.",
       example = "podcast-bhaaratii@googlegroups.com",
       defaultValue = "podcast-bhaaratii@googlegroups.com",
-      required = true, dataType = "string", paramType = "query")
+      required = true, dataType = "string", paramType = "query"),
+  new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url.",
+    example = "https://i.imgur.com/yAR8bWh.png",
+    defaultValue = "https://i.imgur.com/yAR8bWh.png",
+    required = false, dataType = "string", paramType = "query")
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
@@ -91,9 +95,9 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameter('publisherEmail)(publisherEmail => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/yAR8bWh.png")((publisherEmail, imageUrl) => {
           get {
-            onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail)).mapTo[String])(
+            onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, imageUrl = imageUrl)).mapTo[String])(
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
