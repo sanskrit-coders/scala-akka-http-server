@@ -76,7 +76,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   val route = getPodcast
 
   @Path("/archiveItems/{archiveId}")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out!\n You can submit the generated podcast to indices like Google Play and ITunes.", nickname = "getPodcast", httpMethod = "GET")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out!\n You can submit the generated podcast to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a> and <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>.", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
@@ -89,13 +89,13 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       example = "en",
       defaultValue = "en",
       required = true, dataType = "string", paramType = "query"),
-    new ApiImplicitParam(name = "categoriesCsv", value = "Only certain categories are valid, see: https://support.google.com/googleplay/podcasts/answer/6260341#rpt for Google Play and https://www.seriouslysimplepodcasting.com/itunes-podcast-category-list/ for ITunes.",
+    new ApiImplicitParam(name = "categoriesCsv", value = "Only certain categories are valid, see: <a href=\"https://support.google.com/googleplay/podcasts/answer/6260341#rpt\">here</a> for Google Play and <a href=\"https://www.seriouslysimplepodcasting.com/itunes-podcast-category-list/\">here</a> for ITunes.",
       example = "Arts, Business, Comedy, Education, Games & Hobbies, Government & Organizations, Health, Kids & Family, Music, News & Politics, Religion & Spirituality, Science & Medicine, Society & Culture, Sports & Recreation, TV & Film, Technology",
       defaultValue = "Society & Culture",
       required = false, dataType = "string", paramType = "query"),
-    new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url. According to Google Play, image must be square and over 1200 x 1200.",
-      example = "https://i.imgur.com/IsfZpd0.jpg",
-      defaultValue = "https://i.imgur.com/IsfZpd0.jpg",
+    new ApiImplicitParam(name = "imageUrl", value = "The desired feed image url. Image must be square and over 1200 x 1200 for Google Play, and over 1400 x 1400 for ITunes.",
+      example = "https://i.imgur.com/dQjPQYi.jpg",
+      defaultValue = "https://i.imgur.com/dQjPQYi.jpg",
       required = false, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "isExplicitYesNo", allowableValues = "Yes, No",
       required = false, dataType = "string", paramType = "query"),
@@ -109,7 +109,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/IsfZpd0.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ?, 'fileExtensionsCsv ? "mp3")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ?, 'fileExtensionsCsv ? "mp3")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv) => {
           get {
             (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
               onSuccess(
