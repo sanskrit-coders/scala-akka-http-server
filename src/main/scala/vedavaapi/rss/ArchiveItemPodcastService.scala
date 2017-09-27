@@ -24,7 +24,7 @@ import org.json4s.DefaultFormats
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", categories: Seq[String], isExplicitYesNo: Option[String] = None)
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", fileExtensions: Seq[String], categories: Seq[String], isExplicitYesNo: Option[String] = None)
 
 class ArchiveReaderActor extends Actor
   with ActorLogging {
@@ -55,7 +55,7 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(audioFileExtension = "mp3", publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl,
+        archiveItem.toPodcast(fileExtensions = podcastRequest.fileExtensions, publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl,
           languageCode = podcastRequest.languageCode, categories = podcastRequest.categories, isExplicitYesNo = podcastRequest.isExplicitYesNo).getNode().toString()
       })
       podcastFuture.pipeTo(sender())
@@ -99,6 +99,8 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       required = false, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "isExplicitYesNo", allowableValues = "Yes, No",
       required = false, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "fileExtensionsCsv", value = "What types of files should we include in the podcast? mp3 is the default value.", example = "mp3",
+      required = false, dataType = "string", paramType = "query"),
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
@@ -107,9 +109,11 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/IsfZpd0.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ?)((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/IsfZpd0.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ?, 'fileExtensionsCsv ? "mp3")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv) => {
           get {
-            (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") & onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = isExplicitYesNo)).mapTo[String])) (
+            (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
+              onSuccess(
+                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = isExplicitYesNo, fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
