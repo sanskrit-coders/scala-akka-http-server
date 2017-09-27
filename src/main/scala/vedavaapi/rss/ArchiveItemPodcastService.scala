@@ -5,6 +5,7 @@ import javax.ws.rs.Path
 import akka.actor.{Actor, ActorLogging, ActorRef}
 import akka.http.scaladsl.{Http, HttpExt}
 import akka.http.scaladsl.model._
+import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.server.Directives
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.{ByteString, Timeout}
@@ -59,7 +60,7 @@ class ArchiveReaderActor extends Actor
 }
 
 // Returns text/plain , so does not extend Json4sSupport trait unlike some other REST API services.
-@Api(value = "/podcasts/v1", produces = "text/plain")
+@Api(value = "/podcasts/v1", produces = " application/rss+xml")
 @Path("/podcasts/v1")
 class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext)
   extends Directives {
@@ -82,9 +83,11 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     path("podcasts" / "v1" / "archiveItems" / Segment) (
       (archiveId: String) => {
         get {
-          onSuccess(ask(archiveReaderActorRef, archiveId).mapTo[String]) (
-            podcastFeed => complete(podcastFeed)
-          )
+          respondWithHeader(RawHeader("Content-Type", " application/rss+xml")) {
+            onSuccess(ask(archiveReaderActorRef, archiveId).mapTo[String])(
+              podcastFeed => complete(podcastFeed)
+            )
+          }
         }
       }
     )
