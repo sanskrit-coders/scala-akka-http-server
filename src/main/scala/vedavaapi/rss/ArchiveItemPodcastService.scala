@@ -80,14 +80,14 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getPodcast =
-    path("podcasts" / "v1" / "archiveItems" / Segment) (
+    path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
         get {
-          respondWithHeader(RawHeader("Content-Type", " application/rss+xml")) {
-            onSuccess(ask(archiveReaderActorRef, archiveId).mapTo[String])(
-              podcastFeed => complete(podcastFeed)
-            )
-          }
+          onSuccess(ask(archiveReaderActorRef, archiveId).mapTo[String])(
+            podcastFeed => complete {
+              HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
+            }
+          )
         }
       }
     )
