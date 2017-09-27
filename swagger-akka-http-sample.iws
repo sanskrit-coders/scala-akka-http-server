@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7a811a0-b4be-4c29-98cd-166eb9ccce58" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/db-interface-2.5.jar" afterPath="$PROJECT_DIR$/lib/db-interface-2.6.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" afterPath="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger-akka-http-sample.ipr" afterPath="$PROJECT_DIR$/swagger-akka-http-sample.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/launcher/scala-akka-http-server.service" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger-akka-http-sample.iws" afterPath="$PROJECT_DIR$/swagger-akka-http-sample.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,7 +31,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ArchiveItemPodcastService.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArchiveItemPodcastService.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -43,6 +40,16 @@
                 <element signature="e#23#46#0" expanded="true" />
                 <element signature="e#847#871#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scala-akka-http-server.service" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server.service">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,7 +67,7 @@
       <file leaf-file-name="build.sbt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.sbt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
+            <state relative-caret-position="486">
               <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
               <folding />
             </state>
@@ -142,6 +149,7 @@
         <option value="$USER_HOME$/db-interface/src/main/scala/dbSchema/archive/ItemInfo.scala" />
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/vedavaapi/rss/ArchiveItemPodcastService.scala" />
+        <option value="$PROJECT_DIR$/launcher/scala-akka-http-server.service" />
       </list>
     </option>
   </component>
@@ -207,63 +215,6 @@
             <path>
               <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
               <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="grammar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="vedavaapi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="vedavaapi" type="462c0819:PsiDirectoryNode" />
-              <item name="rss" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swagger-akka-http-sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="scala-akka-http-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="vedavaapi" type="462c0819:PsiDirectoryNode" />
-              <item name="swagger" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -552,7 +503,7 @@
       <workItem from="1506107387017" duration="594000" />
       <workItem from="1506108047579" duration="19123000" />
       <workItem from="1506200280175" duration="10645000" />
-      <workItem from="1506312028064" duration="25496000" />
+      <workItem from="1506312028064" duration="26347000" />
     </task>
     <task id="LOCAL-00001" summary="Upgrade scala version">
       <created>1506111245933</created>
@@ -680,11 +631,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506466704228</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Add code to convert archive item to podcast.">
+      <created>1506470034280</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1506470034280</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86511000" />
+    <option name="totallyTimeSpent" value="87362000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -712,7 +670,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.48479822" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33010754" sideWeight="0.4936429" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.44941956" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49806523" order="1" side_tool="false" content_ui="tabs" />
@@ -761,13 +719,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/sanskrit-lttoolbox/sanskrit-lttoolbox.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/scriptFile.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/scala/vedavaapi/hello/HelloService.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/server_config_template.json">
@@ -941,7 +892,7 @@
         <state relative-caret-position="189">
           <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
-            <element signature="e#21#44#0" expanded="true" />
+            <element signature="e#21#44#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -951,7 +902,7 @@
         <state relative-caret-position="83">
           <caret line="46" column="77" lean-forward="false" selection-start-line="46" selection-start-column="77" selection-end-line="46" selection-end-column="77" />
           <folding>
-            <element signature="e#19#38#0" expanded="true" />
+            <element signature="e#19#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1043,7 +994,7 @@
         <state relative-caret-position="234">
           <caret line="13" column="107" lean-forward="false" selection-start-line="13" selection-start-column="107" selection-end-line="13" selection-end-column="107" />
           <folding>
-            <element signature="e#27#79#0" expanded="true" />
+            <element signature="e#27#79#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1061,7 +1012,7 @@
         <state relative-caret-position="288">
           <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding>
-            <element signature="e#21#44#0" expanded="true" />
+            <element signature="e#21#44#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1116,7 +1067,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.sbt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
+        <state relative-caret-position="486">
           <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
           <folding />
         </state>
@@ -1146,6 +1097,14 @@
             <element signature="e#23#46#0" expanded="true" />
             <element signature="e#847#871#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/launcher/scala-akka-http-server.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

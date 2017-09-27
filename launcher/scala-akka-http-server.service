@@ -1,0 +1,16 @@
+[Unit]
+Description= start and stop scala-akka-http-server for Ubuntu (systemd)
+After=network.target
+
+[Service]
+Type=simple
+User=samskritam
+WorkingDirectory=/home/samskritam/scala-akka-http-server/
+ExecStart=/usr/bin/sbt run
+ExecStop=/bin/kill $MAINPID
+ExecStopPost=/bin/rm /home/samskritam/scala-akka-http-server/RUNNING_PID
+ExecRestart=/bin/kill $MAINPID
+Restart=true
+
+[Install]
+WantedBy=multi-user.target
