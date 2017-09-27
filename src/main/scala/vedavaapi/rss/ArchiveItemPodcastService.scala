@@ -22,6 +22,8 @@ import org.json4s.DefaultFormats
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String)
+
 class ArchiveReaderActor extends Actor
   with ActorLogging {
 
@@ -33,8 +35,8 @@ class ArchiveReaderActor extends Actor
   val http = Http(context.system)
 
   def receive = {
-    case archiveId: String => {
-      val uri = f"http://archive.org/metadata/$archiveId"
+    case podcastRequest: ArchivePodcastRequest => {
+      val uri = f"http://archive.org/metadata/${podcastRequest.archiveId}"
       // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
       val responseFuture = http.singleRequest(HttpRequest(uri = uri))
       val responseStringFuture = responseFuture.flatMap(response => response match {
@@ -51,7 +53,7 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(audioFileExtension = "mp3").getNode().toString()
+        archiveItem.toPodcast(audioFileExtension = "mp3", publisherEmail = podcastRequest.publisherEmail).getNode().toString()
       })
       podcastFuture.pipeTo(sender())
     }
@@ -71,9 +73,13 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   @Path("/archiveItems/{archiveId}")
   @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Since the return value is not a JSON, you cannot hit 'Try it out' on swagger UI. You'll have to open the request url in a separate tab.", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
-    new ApiImplicitParam(name = "archiveId", value = "Word to analyse, in HK",
+    new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
-      required = true, dataType = "string", paramType = "path")
+      required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(name = "publisherEmail", value = "The desired feed publisher email id.",
+      example = "podcast-bhaaratii@googlegroups.com",
+      defaultValue = "podcast-bhaaratii@googlegroups.com",
+      required = true, dataType = "string", paramType = "query")
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
@@ -82,13 +88,16 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        get {
-          onSuccess(ask(archiveReaderActorRef, archiveId).mapTo[String])(
-            podcastFeed => complete {
-              HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
-            }
-          )
+        parameter('publisherEmail)(publisherEmail => {
+          get {
+            onSuccess(ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail)).mapTo[String])(
+              podcastFeed => complete {
+                HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
+              }
+            )
+          }
         }
+        )
       }
     )
 }
