@@ -81,7 +81,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     "\nIf the output looks good, you can submit the generated podcast URL (copy from the generated CURL command) to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio." +
     "\nAnd let us know via <a href=\"https://goo.gl/forms/jTT3DvXTVqu1jU0j2\">this form</a>!", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
-    new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url https://archive.org/details/<itemId>",
+    new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url https://archive.org/details/___itemId___",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
       required = true, dataType = "string", paramType = "path"),
     new ApiImplicitParam(name = "publisherEmail", value = "This may be used to verify your authority to submit the feed to indices like (say) Google Play. So, use an address you can access.",
