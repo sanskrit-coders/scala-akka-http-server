@@ -76,7 +76,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   val route = getPodcast
 
   @Path("/archiveItems/{archiveId}")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out!\n You can submit the generated podcast to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a> and <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>.", nickname = "getPodcast", httpMethod = "GET")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background.\n You can submit the generated podcast to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio.", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
