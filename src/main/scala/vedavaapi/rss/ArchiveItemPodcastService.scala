@@ -76,9 +76,12 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   val route = getPodcast
 
   @Path("/archiveItems/{archiveId}")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background.\n You can submit the generated podcast to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio.", nickname = "getPodcast", httpMethod = "GET")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background." +
+    "\n  But wait - Check <a href=\"https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0\">this sheet</a> to see if the relevant podcast has already been generated." +
+    "\nIf the output looks good, you can submit the generated podcast URL (copy from the generated CURL command) to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio." +
+    "\nAnd let us know via <a href=\"https://goo.gl/forms/jTT3DvXTVqu1jU0j2\">this form</a>!", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
-    new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url",
+    new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url https://archive.org/details/<itemId>",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
       required = true, dataType = "string", paramType = "path"),
     new ApiImplicitParam(name = "publisherEmail", value = "This may be used to verify your authority to submit the feed to indices like (say) Google Play. So, use an address you can access.",
