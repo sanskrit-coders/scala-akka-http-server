@@ -118,7 +118,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
           get {
             (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
               onSuccess(
-                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
+                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
