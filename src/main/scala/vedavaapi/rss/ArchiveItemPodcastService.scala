@@ -100,7 +100,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       example = "https://i.imgur.com/dQjPQYi.jpg",
       defaultValue = "https://i.imgur.com/dQjPQYi.jpg",
       required = false, dataType = "string", paramType = "query"),
-    new ApiImplicitParam(name = "isExplicitYesNo", value = "Required by itunes, recommended by Google Play.", allowableValues = "Yes, No", defaultValue = "No",
+    new ApiImplicitParam(name = "isExplicitYesNo", value = "Required by itunes, recommended by Google Play.", allowableValues = "yes, no", defaultValue = "no",
       required = true, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "fileExtensionsCsv", value = "What types of files should we include in the podcast? mp3 is the default value.", example = "mp3",
       required = false, dataType = "string", paramType = "query"),
@@ -114,7 +114,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "No", 'fileExtensionsCsv ? "mp3", 'useArchiveOrder ? "true")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv, useArchiveOrder) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "no", 'fileExtensionsCsv ? "mp3", 'useArchiveOrder ? "true")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv, useArchiveOrder) => {
           get {
             (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
               onSuccess(
