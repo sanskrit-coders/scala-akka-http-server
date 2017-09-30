@@ -100,7 +100,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       example = "https://i.imgur.com/dQjPQYi.jpg",
       defaultValue = "https://i.imgur.com/dQjPQYi.jpg",
       required = false, dataType = "string", paramType = "query"),
-    new ApiImplicitParam(name = "isExplicitYesNo", value = "Required by itunes, recommended by Google Play.", allowableValues = "yes, no", defaultValue = "no",
+    new ApiImplicitParam(name = "isExplicitYesNo", value = "Required by itunes, recommended by Google Play.", allowableValues = "yes, no, clean", defaultValue = "no",
       required = true, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "fileExtensionsCsv", value = "What types of files should we include in the podcast? mp3 is the default value.", example = "mp3",
       required = false, dataType = "string", paramType = "query"),
