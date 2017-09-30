@@ -24,7 +24,7 @@ import org.json4s.DefaultFormats
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", fileExtensions: Seq[String], categories: Seq[String], isExplicitYesNo: Option[String] = None)
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean, fileExtensions: Seq[String], categories: Seq[String], isExplicitYesNo: Option[String] = None)
 
 class ArchiveReaderActor extends Actor
   with ActorLogging {
@@ -56,7 +56,7 @@ class ArchiveReaderActor extends Actor
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
         archiveItem.toPodcast(fileExtensions = podcastRequest.fileExtensions, publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl,
-          languageCode = podcastRequest.languageCode, categories = podcastRequest.categories, isExplicitYesNo = podcastRequest.isExplicitYesNo).getNode().toString()
+          languageCode = podcastRequest.languageCode, categories = podcastRequest.categories, useArchiveOrder = podcastRequest.useArchiveOrder, isExplicitYesNo = podcastRequest.isExplicitYesNo).getNode().toString()
       })
       podcastFuture.pipeTo(sender())
     }
@@ -104,6 +104,8 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       required = true, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "fileExtensionsCsv", value = "What types of files should we include in the podcast? mp3 is the default value.", example = "mp3",
       required = false, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "useArchiveOrder", value = "Should the files appear by the way in which Archive orders them (true by default)? Or should they be ordered by the time at which they were added to the Archive item?", example = "true", allowableValues = "true, false",
+      required = false, dataType = "string", paramType = "query"),
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
@@ -112,11 +114,11 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "No", 'fileExtensionsCsv ? "mp3")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "No", 'fileExtensionsCsv ? "mp3", 'useArchiveOrder ? "true")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv, useArchiveOrder) => {
           get {
             (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
               onSuccess(
-                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
+                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId, publisherEmail = publisherEmail, languageCode = languageCode, imageUrl = imageUrl, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
