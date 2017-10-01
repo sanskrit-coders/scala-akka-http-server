@@ -24,7 +24,7 @@ import org.json4s.DefaultFormats
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean, fileExtensions: Seq[String], categories: Seq[String], isExplicitYesNo: Option[String] = None)
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean, filePattern: String, categories: Seq[String], title: Option[String] = None, isExplicitYesNo: Option[String] = None)
 
 class ArchiveReaderActor extends Actor
   with ActorLogging {
@@ -55,7 +55,7 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(fileExtensions = podcastRequest.fileExtensions, publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl,
+        archiveItem.toPodcast(filePattern = podcastRequest.filePattern, publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl, title = podcastRequest.title,
           languageCode = podcastRequest.languageCode, categories = podcastRequest.categories, useArchiveOrder = podcastRequest.useArchiveOrder, isExplicitYesNo = podcastRequest.isExplicitYesNo).getNode().toString()
       })
       podcastFuture.pipeTo(sender())
@@ -79,6 +79,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/blob/master/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background." +
     "\n  But wait - Check <a href=\"https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0\">this sheet</a> to see if the relevant podcast has already been generated." +
     "\nIf the output looks good, you can submit the generated podcast URL (copy from the generated CURL command) to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio." +
+    "\nAlternatively, if the feed changes rarely or never, you can copy and serve the RSS feed output from some other page (eg. pastebin or github); and submit its URL to ITunes etc.." +
     "\nAnd let us know via <a href=\"https://goo.gl/forms/jTT3DvXTVqu1jU0j2\">this form</a>!", nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url https://archive.org/details/___itemId___",
@@ -102,7 +103,9 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       required = false, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "isExplicitYesNo", value = "Required by itunes, recommended by Google Play.", allowableValues = "yes, no, clean", defaultValue = "no",
       required = true, dataType = "string", paramType = "query"),
-    new ApiImplicitParam(name = "fileExtensionsCsv", value = "What types of files should we include in the podcast? mp3 is the default value.", example = "mp3",
+    new ApiImplicitParam(name = "filePattern", value = "What types of files should we include in the podcast? Provide a regular expression. .*\\.mp3 is the default value.", example = "mp3",
+      required = false, dataType = "string", paramType = "query"),
+    new ApiImplicitParam(name = "title", value = "The archive item title is used by default. If you want something different, set it here.",
       required = false, dataType = "string", paramType = "query"),
     new ApiImplicitParam(name = "useArchiveOrder", value = "Should the files appear by the way in which Archive orders them (true by default)? Or should they be ordered by the time at which they were added to the Archive item?", example = "true", allowableValues = "true, false",
       required = false, dataType = "string", paramType = "query"),
@@ -114,11 +117,11 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcast =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
-        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "no", 'fileExtensionsCsv ? "mp3", 'useArchiveOrder ? "true")((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, fileExtensionsCsv, useArchiveOrder) => {
+        parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "no", 'filePattern ? ".*\\.mp3", 'useArchiveOrder ? "true", 'title?)((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, filePattern, useArchiveOrder, title) => {
           get {
             (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
               onSuccess(
-                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, fileExtensions = fileExtensionsCsv.split(",").map(_.trim))).mapTo[String])) (
+                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim, title=title)).mapTo[String])) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
