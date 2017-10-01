@@ -4,14 +4,13 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 import akka.actor.{ActorSystem, Props}
-import akka.event.slf4j.Logger
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.RouteConcatenation
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import org.json4s.DefaultFormats
 import org.json4s.native.Serialization
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.LoggerFactory
 import sanskrit_coders.scl._
 import scl.grammar.{AnalyserService, GeneratorService}
 import vedavaapi.rss.{ArchiveReaderActor, PodcastService}
@@ -36,8 +35,6 @@ object Server extends App with RouteConcatenation {
   val serverConfigStr =  Source.fromResource("server_config_local.json").getLines().mkString(" ")
   val serverConfig = Serialization.read[ServerConfig](serverConfigStr)
 
-  import com.typesafe.config.Config
-
   import com.typesafe.config.ConfigFactory
 
   val akkaHttpConfig = ConfigFactory.load
@@ -60,8 +57,8 @@ object Server extends App with RouteConcatenation {
 
   //////// Done initializing actors.
 
-  import akka.http.scaladsl.server.Directives._
   import akka.http.scaladsl.model.StatusCodes
+  import akka.http.scaladsl.server.Directives._
 
   implicit val requestTimeoutSecs = akkaHttpConfig.getDuration("akka.http.server.request-timeout", TimeUnit.SECONDS).toInt
   logger.info(s"requestTimeoutSecs: $requestTimeoutSecs")

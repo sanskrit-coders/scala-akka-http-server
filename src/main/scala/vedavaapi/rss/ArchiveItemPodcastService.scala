@@ -5,24 +5,17 @@ import java.util.concurrent.TimeUnit
 import javax.ws.rs.Path
 
 import akka.actor.{Actor, ActorLogging, ActorRef}
-import akka.http.scaladsl.{Http, HttpExt}
+import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
-import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.server.Directives
+import akka.pattern.ask
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.{ByteString, Timeout}
-import dbSchema.grammar.SclAnalysis
-import dbUtils.jsonHelper
-import de.heikoseeberger.akkahttpjson4s.Json4sSupport
-import de.heikoseeberger.akkahttpjson4s.Json4sSupport.ShouldWritePretty
-import io.swagger.annotations._
-import org.json4s.native.{JsonMethods, Serialization}
-import akka.pattern.{ask, pipe}
 import dbSchema.archive.ItemInfo
-import org.json4s.DefaultFormats
+import dbUtils.jsonHelper
+import io.swagger.annotations._
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.concurrent.duration._
 
 case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean, filePattern: String, categories: Seq[String], title: Option[String] = None, isExplicitYesNo: Option[String] = None)
 
