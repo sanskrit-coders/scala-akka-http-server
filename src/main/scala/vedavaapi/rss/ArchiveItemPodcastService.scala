@@ -1,7 +1,9 @@
 package vedavaapi.rss
 
+import java.io.FileNotFoundException
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import java.util.regex.Pattern
 import javax.ws.rs.Path
 
 import akka.actor.{Actor, ActorLogging, ActorRef}
@@ -18,6 +20,10 @@ import io.swagger.annotations._
 import scala.concurrent.{ExecutionContext, Future}
 
 case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean, filePattern: String, categories: Seq[String], title: Option[String] = None, isExplicitYesNo: Option[String] = None)
+
+class ArchiveReaderException extends Exception {
+
+}
 
 class ArchiveReaderActor extends Actor
   with ActorLogging {
@@ -112,9 +118,12 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       (archiveId: String) => {
         parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "no", 'filePattern ? ".*\\.mp3", 'useArchiveOrder ? "true", 'title?)((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, filePattern, useArchiveOrder, title) => {
           get {
-            (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages .") &
+            (validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages.") &
+              validate(Pattern.compile(filePattern) != null, s"filePattern $filePattern is not valid.") &
+              validate(archiveId.contains("//archive.org/details"), s"\"$archiveId\" seems to be an invalid archiveId. Don't provide the entire URL.") &
               onSuccess(
-                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim, title=title)).mapTo[String])) (
+                ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim, title=title)).mapTo[String])
+              ) (
               podcastFeed => complete {
                 HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
               }
