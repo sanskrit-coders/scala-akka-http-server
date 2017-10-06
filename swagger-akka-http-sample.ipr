@@ -327,7 +327,7 @@
     </configuration>
   </component>
   <component name="ScalaCompilerConfiguration">
-    <profile name="SBT 1" modules="sanskrit-lttoolbox,scala-akka-http-server,db-interface" />
+    <profile name="SBT 1" modules="sanskrit-lttoolbox,db-interface,scala-akka-http-server" />
   </component>
   <component name="ScalaSbtSettings">
     <option name="linkedExternalProjectsSettings">
