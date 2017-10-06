@@ -19,10 +19,10 @@ import vedavaapi.swagger.{SwaggerDocService, SwaggerUIService}
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.Source
 
-case class ServerConfig(deployment_directory: Option[String], hostname: Option[String] = Some("localhost"), port: Option[Int] = Some(9090))
+case class ServerConfig(deployment_directory: Option[String], hostname: Option[String] = Some("localhost"), port: Option[Int] = Some(9090), base_http_path: Option[String] = Some("/"))
 
 object Server extends App with RouteConcatenation {
-  implicit val system = ActorSystem("akka-http-server")
+  implicit val system: ActorSystem = ActorSystem("akka-http-server")
   sys.addShutdownHook(system.terminate())
 
   val logger = LoggerFactory.getLogger(this.getClass)
@@ -31,7 +31,7 @@ object Server extends App with RouteConcatenation {
   implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
   // Read the server configuration.
-  implicit val jsonFormats = DefaultFormats
+  implicit val jsonFormats: DefaultFormats.type = DefaultFormats
   val serverConfigStr =  Source.fromResource("server_config_local.json").getLines().mkString(" ")
   val serverConfig = Serialization.read[ServerConfig](serverConfigStr)
 
@@ -60,7 +60,7 @@ object Server extends App with RouteConcatenation {
   import akka.http.scaladsl.model.StatusCodes
   import akka.http.scaladsl.server.Directives._
 
-  implicit val requestTimeoutSecs = akkaHttpConfig.getDuration("akka.http.server.request-timeout", TimeUnit.SECONDS).toInt
+  implicit val requestTimeoutSecs: Int = akkaHttpConfig.getDuration("akka.http.server.request-timeout", TimeUnit.SECONDS).toInt
   logger.info(s"requestTimeoutSecs: $requestTimeoutSecs")
 
   // Set up the routes.
@@ -73,7 +73,7 @@ object Server extends App with RouteConcatenation {
       new GeneratorService(generatorActor).route,
       new PodcastService(archiveReaderActor).route,
       new SwaggerUIService().route,
-      new SwaggerDocService(hostname = serverConfig.hostname.getOrElse("localhost"), port = serverConfig.port.get).routes  // Corresponds to : api-docs/
+      new SwaggerDocService(hostname = serverConfig.hostname.getOrElse("localhost"), port = serverConfig.port.get, basePath = serverConfig.base_http_path.getOrElse("/")).routes  // Corresponds to : api-docs/
     )
     }
   Http().bindAndHandle(routes, "0.0.0.0", serverConfig.port.get)

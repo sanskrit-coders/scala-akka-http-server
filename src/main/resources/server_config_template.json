@@ -1,6 +1,7 @@
 {
   "deployment_directory": "/home/samskritam/scala-akka-http-server/",
-  "hostname": "vedavaapi.org",
-  "port": 9090,
+  "hostname": "api.vedavaapi.org",
+  "base_http_path": "/scala/",
+  "port": 80,
   "request_timeout_secs": 40
 }

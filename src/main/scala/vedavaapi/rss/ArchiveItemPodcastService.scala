@@ -3,13 +3,13 @@ package vedavaapi.rss
 import java.io.FileNotFoundException
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-import java.util.regex.Pattern
+import java.util.regex.{Pattern, PatternSyntaxException}
 import javax.ws.rs.Path
 
 import akka.actor.{Actor, ActorLogging, ActorRef}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
-import akka.http.scaladsl.server.Directives
+import akka.http.scaladsl.server.{Directives, Route}
 import akka.pattern.ask
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.{ByteString, Timeout}
@@ -36,7 +36,7 @@ class ArchiveReaderActor extends Actor
 
   val http = Http(context.system)
 
-  def receive = {
+  def receive: PartialFunction[Any, Unit] = {
     case podcastRequest: ArchivePodcastRequest => {
       val uri = f"http://archive.org/metadata/${podcastRequest.archiveId}"
       // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
@@ -73,13 +73,13 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   // Actor ask timeout
   implicit val timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
 
-  val route = getPodcast
+  val route: Route = getPodcast
 
   def regexValid(pattern: String): Boolean = {
     try {
       Pattern.compile(pattern) != null
     } catch {
-      case _ => false
+      case _: PatternSyntaxException => false
     }
     true
   }
@@ -123,7 +123,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
     new ApiResponse(code = 500, message = "Internal server error")
   ))
-  def getPodcast =
+  def getPodcast: Route =
     path("podcasts" / "v1" / "archiveItems" / Segment)(
       (archiveId: String) => {
         parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "no", 'filePattern ? ".*\\.mp3", 'useArchiveOrder ? "true", 'title ?)((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, filePattern, useArchiveOrder, title) => {

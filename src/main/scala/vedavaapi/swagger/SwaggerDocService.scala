@@ -13,9 +13,9 @@ import vedavaapi.rss.PodcastService
 
 import scala.concurrent.ExecutionContext
 
-class SwaggerDocService(val hostname: String, val port: Int) extends SwaggerHttpService {
+class SwaggerDocService(val hostname: String, val port: Int, override val basePath: String = "/") extends SwaggerHttpService {
   override val apiClasses = Set(classOf[AnalyserService], classOf[GeneratorService], classOf[PodcastService])
-  override val host = s"$hostname:$port"
+  override val host: String = if (port == 80) hostname else s"$hostname:$port"
   override val info = Info(version = "1.0", contact = Some(Contact(name="Contact: Issues page", url="https://github.com/vedavaapi/scala-akka-http-server/issues", email="")))
   override val externalDocs = Some(new ExternalDocs("Server docs", "https://github.com/vedavaapi/scala-akka-http-server"))
   override val securitySchemeDefinitions = Map("basicAuth" -> new BasicAuthDefinition())
