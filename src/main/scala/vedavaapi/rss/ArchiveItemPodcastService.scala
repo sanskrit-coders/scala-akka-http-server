@@ -75,6 +75,15 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
 
   val route = getPodcast
 
+  def regexValid(pattern: String): Boolean = {
+    try {
+      Pattern.compile(pattern) != null
+    } catch {
+      case _ => false
+    }
+    true
+  }
+
   @Path("/archiveItems/{archiveId}")
   @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/blob/master/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background." +
     "\n  But wait - Check <a href=\"https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0\">this sheet</a> to see if the relevant podcast has already been generated." +
@@ -119,7 +128,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
       (archiveId: String) => {
         parameters('publisherEmail, 'imageUrl ? "https://i.imgur.com/dQjPQYi.jpg", 'languageCode ? "en", 'categoriesCsv ? "Society & Culture", 'isExplicitYesNo ? "no", 'filePattern ? ".*\\.mp3", 'useArchiveOrder ? "true", 'title ?)((publisherEmail, imageUrl, languageCode, categoriesCsv, isExplicitYesNo, filePattern, useArchiveOrder, title) => {
           (get & validate(Locale.getISOLanguages.contains(languageCode), s"languageCode $languageCode not found in Locale.getISOLanguages.") &
-            validate(Pattern.compile(filePattern) != null, s"filePattern $filePattern is not valid.") &
+            validate(regexValid(filePattern), s"filePattern $filePattern is not valid.") &
             validate(!archiveId.contains("//archive.org/details"), s"<<$archiveId>> seems to be an invalid archiveId. Don't provide the entire URL.") &
             onComplete(
               ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim, title = title)).mapTo[String])) {
