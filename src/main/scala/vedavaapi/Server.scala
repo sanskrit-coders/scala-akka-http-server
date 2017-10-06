@@ -68,7 +68,7 @@ object Server extends App with RouteConcatenation {
   val routes =
     cors() {concat(
       path("") {
-        redirect("swagger", StatusCodes.TemporaryRedirect)
+        redirect("swagger/index.html", StatusCodes.TemporaryRedirect)
       },
       new AnalyserService(analyserActor).route,
       new GeneratorService(generatorActor).route,

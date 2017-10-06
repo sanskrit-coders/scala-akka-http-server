@@ -27,8 +27,7 @@ class SwaggerDocService(val swagger_settings: SwaggerSettings) extends SwaggerHt
 
 class SwaggerUIService(implicit executionContext: ExecutionContext) extends Directives {
   val route: Route =
-    concat(path("swagger") {
-      getFromResource("swagger/index.html")
-    },
-      getFromResourceDirectory("swagger"))
+    pathPrefix("swagger") {
+      getFromResourceDirectory("swagger")
+    }
 }
