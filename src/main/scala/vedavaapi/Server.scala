@@ -19,7 +19,8 @@ import vedavaapi.swagger.{SwaggerDocService, SwaggerUIService}
 import scala.concurrent.ExecutionContextExecutor
 import scala.io.Source
 
-case class ServerConfig(deployment_directory: Option[String], hostname: Option[String] = Some("localhost"), service_port: Option[Int] = Some(9090), proxy_port: Option[Int] = None, base_http_path: Option[String] = Some("/"))
+case class SwaggerSettings(hostname: Option[String] = Some("localhost"), port: Option[Int] = None, base_http_path: Option[String] = Some("/"), protocols: Seq[String] = Seq("http"))
+case class ServerConfig(deployment_directory: Option[String], service_port: Option[Int] = Some(9090), swagger_settings: SwaggerSettings)
 
 object Server extends App with RouteConcatenation {
   implicit val system: ActorSystem = ActorSystem("akka-http-server")
@@ -73,7 +74,7 @@ object Server extends App with RouteConcatenation {
       new GeneratorService(generatorActor).route,
       new PodcastService(archiveReaderActor).route,
       new SwaggerUIService().route,
-      new SwaggerDocService(hostname = serverConfig.hostname.getOrElse("localhost"), port = serverConfig.proxy_port.getOrElse(serverConfig.service_port.get), basePath = serverConfig.base_http_path.getOrElse("/")).routes  // Corresponds to : api-docs/
+      new SwaggerDocService(swagger_settings = serverConfig.swagger_settings).routes  // Corresponds to : api-docs/
     )
     }
   Http().bindAndHandle(routes, "0.0.0.0", serverConfig.service_port.get)
