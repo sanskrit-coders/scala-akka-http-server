@@ -5,6 +5,7 @@
     "hostname": "api.vedavaapi.org",
     "base_http_path": "/scala/",
     "protocols": [
+      "http",
       "https"
     ]
   }
