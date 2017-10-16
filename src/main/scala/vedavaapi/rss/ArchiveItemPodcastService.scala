@@ -20,7 +20,7 @@ import io.swagger.annotations._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean, filePattern: String, categories: Seq[String], title: Option[String] = None, isExplicitYesNo: Option[String] = None)
+case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean = true, filePattern: String, categories: Seq[String], title: Option[String] = None, isExplicitYesNo: Option[String] = None)
 
 class ArchiveReaderException extends Exception {
 
@@ -71,7 +71,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   extends Directives {
 
   // Actor ask timeout
-  implicit val timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
+  implicit val timeout: Timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
 
   val route: Route = getPodcast
 

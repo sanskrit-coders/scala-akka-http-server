@@ -22,6 +22,8 @@
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
+      <inspection_tool class="MatchToPartialFunction" enabled="false" level="WARNING" enabled_by_default="false" />
+      <inspection_tool class="RedundantBlock" enabled="false" level="WARNING" enabled_by_default="false" />
     </profile>
     <version value="1.0" />
   </component>
@@ -500,7 +502,6 @@
     </library>
     <library name="Maven: org.scala-lang:scala-library:2.12.2" type="Scala">
       <properties>
-        <option name="languageLevel" value="Scala_2_12" />
         <compiler-classpath>
           <root url="file://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.12.2/scala-compiler-2.12.2.jar" />
           <root url="file://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.12.2/scala-library-2.12.2.jar" />
@@ -892,7 +893,6 @@
     </library>
     <library name="SBT: org.scala-lang:scala-library:2.12.3:jar" type="Scala">
       <properties>
-        <option name="languageLevel" value="Scala_2_12" />
         <compiler-classpath>
           <root url="file://$USER_HOME$/.ivy2/cache/jline/jline/jars/jline-2.14.4.jar" />
           <root url="file://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar" />
