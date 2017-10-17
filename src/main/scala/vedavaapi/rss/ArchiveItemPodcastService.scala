@@ -14,13 +14,15 @@ import akka.pattern.ask
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.{ByteString, Timeout}
 import dbSchema.archive.ItemInfo
+import dbSchema.rss.Podcast
 import dbUtils.jsonHelper
 import io.swagger.annotations._
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
-case class ArchivePodcastRequest(archiveId: String, publisherEmail: String, imageUrl: String, languageCode: String = "en", useArchiveOrder: Boolean = true, filePattern: String, categories: Seq[String], title: Option[String] = None, isExplicitYesNo: Option[String] = None)
+case class ArchivePodcastRequest(archiveId: String, useArchiveOrder: Boolean = true,
+                                 filePattern: String, podcast: Podcast)
 
 class ArchiveReaderException extends Exception {
 
@@ -55,8 +57,7 @@ class ArchiveReaderActor extends Actor
       val podcastFuture = responseStringFuture.map(responseString => {
         log.debug(responseString)
         val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(filePattern = podcastRequest.filePattern, publisherEmail = podcastRequest.publisherEmail, imageUrl = podcastRequest.imageUrl, title = podcastRequest.title,
-          languageCode = podcastRequest.languageCode, categories = podcastRequest.categories, useArchiveOrder = podcastRequest.useArchiveOrder, isExplicitYesNo = podcastRequest.isExplicitYesNo).getNode().toString()
+        archiveItem.toPodcast(filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcast = podcastRequest.podcast).getNode.toString()
       })
       podcastFuture.pipeTo(sender())
     }
@@ -131,7 +132,8 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
             validate(regexValid(filePattern), s"filePattern $filePattern is not valid.") &
             validate(!archiveId.contains("//archive.org/details"), s"<<$archiveId>> seems to be an invalid archiveId. Don't provide the entire URL.") &
             onComplete(
-              ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo), useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim, title = title)).mapTo[String])) {
+              ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim,
+                podcast = Podcast(title = title.getOrElse(""), description = "", items = Seq(), publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo)))).mapTo[String])) {
             case Success(podcastFeed) => complete {
               HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
             }

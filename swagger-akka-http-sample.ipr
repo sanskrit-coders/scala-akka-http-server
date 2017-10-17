@@ -22,8 +22,10 @@
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
+      <inspection_tool class="JavaAccessorMethodCalledAsEmptyParen" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="MatchToPartialFunction" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="RedundantBlock" enabled="false" level="WARNING" enabled_by_default="false" />
+      <inspection_tool class="RemoveRedundantReturn" enabled="false" level="WARNING" enabled_by_default="false" />
     </profile>
     <version value="1.0" />
   </component>
@@ -329,7 +331,10 @@
     </configuration>
   </component>
   <component name="ScalaCompilerConfiguration">
-    <profile name="SBT 1" modules="sanskrit-lttoolbox,db-interface,scala-akka-http-server">
+    <profile name="SBT 1" modules="sanskrit-lttoolbox,db-interface">
+      <option name="postfixOps" value="true" />
+    </profile>
+    <profile name="SBT 2" modules="scala-akka-http-server">
       <option name="postfixOps" value="true" />
     </profile>
   </component>
