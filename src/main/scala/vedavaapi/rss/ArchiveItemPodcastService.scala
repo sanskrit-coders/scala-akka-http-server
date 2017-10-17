@@ -38,31 +38,36 @@ class ArchiveReaderActor extends Actor
 
   val http = Http(context.system)
 
-  def receive: PartialFunction[Any, Unit] = {
-    case podcastRequest: ArchivePodcastRequest => {
-      val uri = f"http://archive.org/metadata/${podcastRequest.archiveId}"
-      // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
-      val responseFuture = http.singleRequest(HttpRequest(uri = uri))
-      val responseStringFuture = responseFuture.flatMap(response => response match {
-        case HttpResponse(StatusCodes.OK, headers, entity, _) =>
-          // The below is a Future[String] which is filled when the stream is read. That future is what we return!
-          entity.dataBytes.runFold(ByteString(""))(_ ++ _).map(_.utf8String)
-        case resp@HttpResponse(code, _, _, _) =>
-          val message = "Request failed, response code: " + code
-          log.warning(message = message)
-          // Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
-          resp.discardEntityBytes()
-          Future.failed(new Exception(message))
-      })
-      val podcastFuture = responseStringFuture.map(responseString => {
-        log.debug(responseString)
-        val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-        archiveItem.toPodcast(filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcast = podcastRequest.podcast).getNode.toString()
-      })
-      podcastFuture.pipeTo(sender())
-    }
+  def getPodcastFuture(archiveId: String, filePattern: String, useArchiveOrder: Boolean, podcastTemplate: Podcast): Future[Podcast] = {
+
+    val uri = f"http://archive.org/metadata/${archiveId}"
+    // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
+    val responseFuture = http.singleRequest(HttpRequest(uri = uri))
+    val responseStringFuture = responseFuture.flatMap(response => response match {
+      case HttpResponse(StatusCodes.OK, headers, entity, _) =>
+        // The below is a Future[String] which is filled when the stream is read. That future is what we return!
+        entity.dataBytes.runFold(ByteString(""))(_ ++ _).map(_.utf8String)
+      case resp@HttpResponse(code, _, _, _) =>
+        val message = "Request failed, response code: " + code
+        log.warning(message = message)
+        // Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
+        resp.discardEntityBytes()
+        Future.failed(new Exception(message))
+    })
+    responseStringFuture.map(responseString => {
+      log.debug(responseString)
+      val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
+      archiveItem.toPodcast(filePattern = filePattern, useArchiveOrder = useArchiveOrder, podcast = podcastTemplate)
+    })
   }
 
+  def receive: PartialFunction[Any, Unit] = {
+    case podcastRequest: ArchivePodcastRequest => {
+      val podcastFuture = getPodcastFuture(archiveId = podcastRequest.archiveId, filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcastTemplate = podcastRequest.podcast)
+        podcastFuture.map(_.getNode.toString())
+        podcastFuture.pipeTo(sender())
+      }
+    }
 }
 
 // Returns text/plain , so does not extend Json4sSupport trait unlike some other REST API services.
