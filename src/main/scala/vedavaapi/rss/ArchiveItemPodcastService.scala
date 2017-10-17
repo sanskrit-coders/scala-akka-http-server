@@ -64,8 +64,7 @@ class ArchiveReaderActor extends Actor
   def receive: PartialFunction[Any, Unit] = {
     case podcastRequest: ArchivePodcastRequest => {
       val podcastFuture = getPodcastFuture(archiveId = podcastRequest.archiveId, filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcastTemplate = podcastRequest.podcast)
-        podcastFuture.map(_.getNode.toString())
-        podcastFuture.pipeTo(sender())
+        podcastFuture.map(_.getNode.toString()).pipeTo(sender())
       }
     }
 }
