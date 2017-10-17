@@ -21,8 +21,8 @@ import io.swagger.annotations._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
-case class ArchivePodcastRequest(archiveId: String, useArchiveOrder: Boolean = true,
-                                 filePattern: String, podcast: Podcast)
+case class ArchivePodcastRequest(archiveIds: Seq[String], useArchiveOrder: Boolean = true,
+                                 filePattern: String, podcastTemplate: Podcast)
 
 class ArchiveReaderException extends Exception {
 
@@ -38,7 +38,7 @@ class ArchiveReaderActor extends Actor
 
   val http = Http(context.system)
 
-  def getPodcastFuture(archiveId: String, filePattern: String, useArchiveOrder: Boolean, podcastTemplate: Podcast): Future[Podcast] = {
+  def getPodcastFuture(archiveId: String, podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
 
     val uri = f"http://archive.org/metadata/${archiveId}"
     // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
@@ -57,14 +57,19 @@ class ArchiveReaderActor extends Actor
     responseStringFuture.map(responseString => {
       log.debug(responseString)
       val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
-      archiveItem.toPodcast(filePattern = filePattern, useArchiveOrder = useArchiveOrder, podcast = podcastTemplate)
+      archiveItem.toPodcast(filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcast = podcastRequest.podcastTemplate)
     })
   }
 
   def receive: PartialFunction[Any, Unit] = {
     case podcastRequest: ArchivePodcastRequest => {
-      val podcastFuture = getPodcastFuture(archiveId = podcastRequest.archiveId, filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcastTemplate = podcastRequest.podcast)
+      assert(podcastRequest.archiveIds.length > 0)
+      if (podcastRequest.archiveIds.length == 1) {
+        val podcastFuture = getPodcastFuture(archiveId = podcastRequest.archiveIds(0), podcastRequest = podcastRequest)
         podcastFuture.map(_.getNode.toString()).pipeTo(sender())
+      } else {
+        Future.failed(new Exception("Not implemented."))
+      }
       }
     }
 }
@@ -136,8 +141,8 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
             validate(regexValid(filePattern), s"filePattern $filePattern is not valid.") &
             validate(!archiveId.contains("//archive.org/details"), s"<<$archiveId>> seems to be an invalid archiveId. Don't provide the entire URL.") &
             onComplete(
-              ask(archiveReaderActorRef, ArchivePodcastRequest(archiveId = archiveId.trim, useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim,
-                podcast = Podcast(title = title.getOrElse(""), description = "", items = Seq(), publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo)))).mapTo[String])) {
+              ask(archiveReaderActorRef, ArchivePodcastRequest(archiveIds = Seq(archiveId.trim), useArchiveOrder = useArchiveOrder.toBoolean, filePattern = filePattern.trim,
+                podcastTemplate = Podcast(title = title.getOrElse(""), description = "", items = Seq(), publisherEmail = publisherEmail.trim, languageCode = languageCode.trim, imageUrl = imageUrl.trim, categories = categoriesCsv.split(",").map(_.trim), isExplicitYesNo = Some(isExplicitYesNo)))).mapTo[String])) {
             case Success(podcastFeed) => complete {
               HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
             }
