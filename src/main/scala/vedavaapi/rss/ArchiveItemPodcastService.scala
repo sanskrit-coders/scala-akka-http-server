@@ -17,6 +17,7 @@ import dbSchema.archive.ItemInfo
 import dbSchema.rss.Podcast
 import dbUtils.jsonHelper
 import io.swagger.annotations._
+import vedavaapi.Utils
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
@@ -38,12 +39,9 @@ class ArchiveReaderActor extends Actor
 
   val http = Http(context.system)
 
-  def getPodcastFuture(archiveId: String, podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
-
-    val uri = f"http://archive.org/metadata/${archiveId}"
-    // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
+  def readHttpString(uri: String): Future[String] = {
     val responseFuture = http.singleRequest(HttpRequest(uri = uri))
-    val responseStringFuture = responseFuture.flatMap(response => response match {
+    responseFuture.flatMap(response => response match {
       case HttpResponse(StatusCodes.OK, headers, entity, _) =>
         // The below is a Future[String] which is filled when the stream is read. That future is what we return!
         entity.dataBytes.runFold(ByteString(""))(_ ++ _).map(_.utf8String)
@@ -54,24 +52,54 @@ class ArchiveReaderActor extends Actor
         resp.discardEntityBytes()
         Future.failed(new Exception(message))
     })
-    responseStringFuture.map(responseString => {
-      log.debug(responseString)
+  }
+
+  def getPodcastFuture(archiveId: String, podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
+
+    val uri = f"http://archive.org/metadata/${archiveId}"
+    // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
+    readHttpString(uri = uri).map(responseString => {
+//      log.debug(responseString)
       val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
       archiveItem.toPodcast(filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcast = podcastRequest.podcastTemplate)
     })
   }
 
+  def getFinalPodcastFuture(podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
+    assert(podcastRequest.archiveIds.nonEmpty)
+    val podcastFutures = podcastRequest.archiveIds.map(x => getPodcastFuture(archiveId = x, podcastRequest = podcastRequest))
+    val podcastTrysFuture = Utils.getFutureOfTrys(futures = podcastFutures)
+    podcastTrysFuture.map[Podcast](podcastTrys => {
+      val podcastFailures = podcastTrys.filter(_.isFailure).map(_.asInstanceOf[Failure[Podcast]])
+      val podcastSuccesses = podcastTrys.filter(_.isSuccess).map(_.asInstanceOf[Success[Podcast]])
+      if (podcastFailures.nonEmpty) {
+        throw new IllegalArgumentException(podcastFailures.map(_.exception.getMessage).mkString("\n\n"))
+      } else {
+        val podcasts = podcastSuccesses.map(_.value)
+        if (podcasts.size <= 0) {
+          throw new IllegalArgumentException("No podcast successfully read!")
+        }
+        val finalPodcast: Podcast = podcasts.foldLeft(podcasts.head){
+          (p1: Podcast, p2: Podcast) => Podcast.merge(podcast1 = p1, podcast2 = p2)
+        }
+        finalPodcast
+      }
+    })
+  }
+
   def receive: PartialFunction[Any, Unit] = {
     case podcastRequest: ArchivePodcastRequest => {
-      assert(podcastRequest.archiveIds.length > 0)
-      if (podcastRequest.archiveIds.length == 1) {
-        val podcastFuture = getPodcastFuture(archiveId = podcastRequest.archiveIds(0), podcastRequest = podcastRequest)
-        podcastFuture.map(_.getNode.toString()).pipeTo(sender())
-      } else {
-        Future.failed(new Exception("Not implemented."))
-      }
-      }
+      getFinalPodcastFuture(podcastRequest = podcastRequest).map(_.getNode.toString()).pipeTo(sender())
     }
+    case podcastRequestUrl: String => {
+      readHttpString(uri = podcastRequestUrl).map(responseString => {
+        log.debug(responseString)
+        val podcastRequest = jsonHelper.fromString[ArchivePodcastRequest](responseString)
+        getFinalPodcastFuture(podcastRequest = podcastRequest).map(_.getNode.toString()).pipeTo(sender())
+      })
+
+    }
+  }
 }
 
 // Returns text/plain , so does not extend Json4sSupport trait unlike some other REST API services.
