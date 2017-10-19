@@ -81,7 +81,7 @@ class ArchiveReaderActor extends Actor
         if (podcasts.size <= 0) {
           throw new IllegalArgumentException("No podcast successfully read!")
         }
-        val finalPodcast: Podcast = podcasts.foldLeft(podcasts.head){
+        val finalPodcast: Podcast = podcasts.foldLeft(null.asInstanceOf[Podcast]){
           (p1: Podcast, p2: Podcast) => Podcast.merge(podcast1 = p1, podcast2 = p2)
         }
         finalPodcast
