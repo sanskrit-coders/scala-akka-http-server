@@ -102,7 +102,7 @@ class ArchiveReaderActor extends Actor
   }
 }
 
-// Returns text/plain , so does not extend Json4sSupport trait unlike some other REST API services.
+// Returns application/rss+xml, so does not extend Json4sSupport trait unlike some other REST API services.
 @Api(value = "/podcasts/v1", produces = " application/rss+xml")
 @Path("/podcasts/v1")
 class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
@@ -111,7 +111,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   // Actor ask timeout
   implicit val timeout: Timeout = Timeout(requestTimeoutSecs, TimeUnit.SECONDS)
 
-  val route: Route = getPodcast
+  val route: Route = concat(getPodcast, getPodcastFromUri)
 
   def regexValid(pattern: String): Boolean = {
     try {
@@ -122,12 +122,17 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     true
   }
 
-  @Path("/archiveItems/{archiveId}")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/blob/master/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background." +
+  final val USAGE_TIPS = "Click on Try it out! See <a href=\"https://github.com/vedavaapi/scala-akka-http-server/blob/master/README_PODCASTING_TOOLS.md\">README_PODCASTING</a> for background." +
     "\n  But wait - Check <a href=\"https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0\">this sheet</a> to see if the relevant podcast has already been generated." +
-    "\nIf the output looks good, you can submit the generated podcast URL (copy from the generated CURL command, perhaps replacing https with http for speed) to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio." +
-    "\nAlternatively, if the feed changes rarely or never, you can copy and serve the RSS feed output from some other page (eg. pastebin or github); and submit its URL to ITunes etc.." +
-    "\nAnd let us know via <a href=\"https://goo.gl/forms/jTT3DvXTVqu1jU0j2\">this form</a>!", nickname = "getPodcast", httpMethod = "GET")
+    "\n If the output looks good:" +
+    "<ul>" +
+    "<li>If the feed changes rarely or never, you can copy and serve the RSS feed output from some other page (eg. pastebin or github); and submit its URL to indices like <a href=\"https://play.google.com/music/podcasts/portal#p:id=playpodcast/all-podcasts\">Google Play</a>, <a href=\"https://podcastsconnect.apple.com/#/new-feed/\">ITunes</a>, Stitcher and TuneInRadio.</li>" +
+    "<li>You can submit the generated podcast URL (copy from the generated CURL command, perhaps replacing https with http for speed) to indices like ITunes etc.., but do this sparingly as you might not want to rely on the stability of this server. </li>" +
+    "</ul>" +
+    "\n Finally, let us know via <a href=\"https://goo.gl/forms/jTT3DvXTVqu1jU0j2\">this form</a>!"
+
+  @Path("/archiveItems/{archiveId}")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = USAGE_TIPS, nickname = "getPodcast", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveId", value = "The Archive Item ID, which you find in the url https://archive.org/details/___itemId___",
       example = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni", defaultValue = "CDAC-tArkShya-shAstra-viShayaka-bhAShaNAni",
@@ -177,8 +182,31 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
             case Failure(ex) => complete((StatusCodes.InternalServerError, s"An error occurred: ${ex.getMessage}, with stacktrace:\n${ex.getStackTrace.mkString("\n")}"))
           }
         }
-
         )
       }
     )
+
+
+  @Path("/archiveRequests/{archiveRequestUri}")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.",
+    notes = USAGE_TIPS, nickname = "getPodcastFromUri", httpMethod = "GET")
+  @ApiImplicitParams(Array(
+    new ApiImplicitParam(name = "archiveRequestUri", value = "URI of a valid archive request.",
+      example = "", defaultValue = "",
+      required = true, dataType = "string", paramType = "path"),
+  ))
+  @ApiResponses(Array(
+    new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
+    new ApiResponse(code = 500, message = "Internal server error")
+  ))
+  def getPodcastFromUri: Route =
+    path("podcasts" / "v1" / "archiveRequests" / Segment)(
+      (archiveRequestUri: String) => {
+        onComplete(ask(archiveReaderActorRef, archiveRequestUri).mapTo[String]) {
+          case Success(podcastFeed) => complete {
+            HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
+          }
+          case Failure(ex) => complete((StatusCodes.InternalServerError, s"An error occurred: ${ex.getMessage}, with stacktrace:\n${ex.getStackTrace.mkString("\n")}"))
+        }
+      })
 }
