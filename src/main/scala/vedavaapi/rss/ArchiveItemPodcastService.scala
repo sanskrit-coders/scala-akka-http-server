@@ -1,6 +1,6 @@
 package vedavaapi.rss
 
-import java.io.FileNotFoundException
+import java.net.URLDecoder
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import java.util.regex.{Pattern, PatternSyntaxException}
@@ -17,13 +17,15 @@ import dbSchema.archive.ItemInfo
 import dbSchema.rss.Podcast
 import dbUtils.jsonHelper
 import io.swagger.annotations._
-import vedavaapi.Utils
+import vedavaapi.RichHttpClient.HttpClient
+import vedavaapi.{RichHttpClient, Utils}
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
 case class ArchivePodcastRequest(archiveIds: Seq[String], useArchiveOrder: Boolean = true,
                                  filePattern: String, podcastTemplate: Podcast)
+case class ArchivePodcastRequestUri(requestUri: String)
 
 class ArchiveReaderException extends Exception {
 
@@ -37,16 +39,16 @@ class ArchiveReaderActor extends Actor
 
   final implicit val materializer: ActorMaterializer = ActorMaterializer(ActorMaterializerSettings(context.system))
 
-  val http = Http(context.system)
-
-  def readHttpString(uri: String): Future[String] = {
-    val responseFuture = http.singleRequest(HttpRequest(uri = uri))
+  val simpleClient: HttpRequest => Future[HttpResponse] = Http(context.system).singleRequest(_: HttpRequest)
+  val redirectingClient: HttpClient = RichHttpClient.httpClientWithRedirect(simpleClient)
+  def readHttpString(uri: String, redirectsDone: Int = 0): Future[String] = {
+    val responseFuture = redirectingClient(HttpRequest(uri = uri))
     responseFuture.flatMap(response => response match {
       case HttpResponse(StatusCodes.OK, headers, entity, _) =>
         // The below is a Future[String] which is filled when the stream is read. That future is what we return!
         entity.dataBytes.runFold(ByteString(""))(_ ++ _).map(_.utf8String)
       case resp@HttpResponse(code, _, _, _) =>
-        val message = "Request failed, response code: " + code
+        val message = "Request for " + uri + " failed, response code: " + code
         log.warning(message = message)
         // Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
         resp.discardEntityBytes()
@@ -91,13 +93,13 @@ class ArchiveReaderActor extends Actor
     case podcastRequest: ArchivePodcastRequest => {
       getFinalPodcastFuture(podcastRequest = podcastRequest).map(_.getNode.toString()).pipeTo(sender())
     }
-    case podcastRequestUrl: String => {
-      readHttpString(uri = podcastRequestUrl).map(responseString => {
+    case podcastRequestUrl: ArchivePodcastRequestUri => {
+      log.debug(podcastRequestUrl.toString)
+      readHttpString(uri = podcastRequestUrl.requestUri).map(responseString => {
         log.debug(responseString)
         val podcastRequest = jsonHelper.fromString[ArchivePodcastRequest](responseString)
-        getFinalPodcastFuture(podcastRequest = podcastRequest).map(_.getNode.toString()).pipeTo(sender())
-      })
-
+        getFinalPodcastFuture(podcastRequest = podcastRequest)
+      }).flatten.map(_.getNode.toString()).pipeTo(sender())
     }
   }
 }
@@ -192,7 +194,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     notes = USAGE_TIPS, nickname = "getPodcastFromUri", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveRequestUri", value = "URI of a valid archive request.",
-      example = "", defaultValue = "",
+      example = "https://github.com/sanskrit-coders/rss-feeds/raw/master/feeds/kn/requestJsons/r_ganesh_all_lectures.json", defaultValue = "https://github.com/sanskrit-coders/rss-feeds/raw/master/feeds/kn/requestJsons/r_ganesh_all_lectures.json",
       required = true, dataType = "string", paramType = "path"),
   ))
   @ApiResponses(Array(
@@ -202,7 +204,7 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
   def getPodcastFromUri: Route =
     path("podcasts" / "v1" / "archiveRequests" / Segment)(
       (archiveRequestUri: String) => {
-        onComplete(ask(archiveReaderActorRef, archiveRequestUri).mapTo[String]) {
+        onComplete(ask(archiveReaderActorRef, ArchivePodcastRequestUri(requestUri = URLDecoder.decode(archiveRequestUri, "UTF-8"))).mapTo[String]) {
           case Success(podcastFeed) => complete {
             HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
           }
