@@ -23,6 +23,7 @@ object RichHttpClient {
     response.status match {
       case StatusCodes.Found | StatusCodes.MovedPermanently | StatusCodes.SeeOther ⇒
         val newUri = response.header[Location].get.uri
+        // Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
         response.discardEntityBytes()
         // TODO: add debug logging
 

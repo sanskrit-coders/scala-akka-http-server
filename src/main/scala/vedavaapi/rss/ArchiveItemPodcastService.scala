@@ -105,7 +105,7 @@ class ArchiveReaderActor extends Actor
 }
 
 // Returns application/rss+xml, so does not extend Json4sSupport trait unlike some other REST API services.
-@Api(value = "/podcasts/v1", produces = " application/rss+xml")
+@Api(produces = " application/rss+xml")
 @Path("/podcasts/v1")
 class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives {
@@ -189,26 +189,31 @@ class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext:
     )
 
 
-  @Path("/archiveRequests/{archiveRequestUri}")
+  /* We are not using /archiveRequests/{archiveRequestUri} below because we observed the below error behind vedavaapi apache proxy:
+  "The requested URL /scala/podcasts/v1/archiveRequests/https://github.com/sanskrit-coders/rss-feeds/raw/master/feeds/kn/requestJsons/r_ganesh_all_lectures.json was not found on this server."
+  Hence making archiveRequestUri a query parameter, rather than a path parameter.
+   */
+  @Path("/archiveRequests")
   @ApiOperation(value = "Return the podcast corresponding to an archive item.",
     notes = USAGE_TIPS, nickname = "getPodcastFromUri", httpMethod = "GET")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "archiveRequestUri", value = "URI of a valid archive request.",
       example = "https://github.com/sanskrit-coders/rss-feeds/raw/master/feeds/kn/requestJsons/r_ganesh_all_lectures.json", defaultValue = "https://github.com/sanskrit-coders/rss-feeds/raw/master/feeds/kn/requestJsons/r_ganesh_all_lectures.json",
-      required = true, dataType = "string", paramType = "path"),
+      required = true, dataType = "string", paramType = "query"),
   ))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "Return podcast feed", response = classOf[String]),
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getPodcastFromUri: Route =
-    path("podcasts" / "v1" / "archiveRequests" / Segment)(
-      (archiveRequestUri: String) => {
-        onComplete(ask(archiveReaderActorRef, ArchivePodcastRequestUri(requestUri = URLDecoder.decode(archiveRequestUri, "UTF-8"))).mapTo[String]) {
+    path("podcasts" / "v1" / "archiveRequests")(
+      parameters('archiveRequestUri)((archiveRequestUri: String) => {
+        (get & onComplete(ask(archiveReaderActorRef, ArchivePodcastRequestUri(requestUri = URLDecoder.decode(archiveRequestUri, "UTF-8"))).mapTo[String])) {
           case Success(podcastFeed) => complete {
             HttpResponse(entity = HttpEntity(ContentType(MediaTypes.`application/rss+xml`, HttpCharsets.`UTF-8`), podcastFeed))
           }
           case Failure(ex) => complete((StatusCodes.InternalServerError, s"An error occurred: ${ex.getMessage}, with stacktrace:\n${ex.getStackTrace.mkString("\n")}"))
         }
       })
+    )
 }
