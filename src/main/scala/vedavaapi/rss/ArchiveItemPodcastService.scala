@@ -39,9 +39,9 @@ class ArchiveReaderActor extends Actor
 
   final implicit val materializer: ActorMaterializer = ActorMaterializer(ActorMaterializerSettings(context.system))
 
-  val simpleClient: HttpRequest => Future[HttpResponse] = Http(context.system).singleRequest(_: HttpRequest)
-  val redirectingClient: HttpClient = RichHttpClient.httpClientWithRedirect(simpleClient)
-  def readHttpString(uri: String, redirectsDone: Int = 0): Future[String] = {
+  private val simpleClient: HttpRequest => Future[HttpResponse] = Http(context.system).singleRequest(_: HttpRequest)
+  private val redirectingClient: HttpClient = RichHttpClient.httpClientWithRedirect(simpleClient)
+  def readHttpString(uri: String): Future[String] = {
     val responseFuture = redirectingClient(HttpRequest(uri = uri))
     responseFuture.flatMap(response => response match {
       case HttpResponse(StatusCodes.OK, headers, entity, _) =>

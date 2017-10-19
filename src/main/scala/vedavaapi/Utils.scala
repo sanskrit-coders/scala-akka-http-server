@@ -2,6 +2,7 @@ package vedavaapi
 
 import akka.http.scaladsl.model.headers.Location
 import akka.http.scaladsl.model.{HttpMethods, HttpRequest, HttpResponse, StatusCodes}
+import akka.stream.Materializer
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
@@ -18,11 +19,11 @@ object Utils {
 object RichHttpClient {
   type HttpClient = HttpRequest ⇒ Future[HttpResponse]
 
-  def redirectOrResult(client: HttpClient)(response: HttpResponse): Future[HttpResponse] =
+  def redirectOrResult(client: HttpClient)(response: HttpResponse)(implicit materializer: Materializer): Future[HttpResponse] =
     response.status match {
       case StatusCodes.Found | StatusCodes.MovedPermanently | StatusCodes.SeeOther ⇒
         val newUri = response.header[Location].get.uri
-        // response.discardEntityBytes()
+        response.discardEntityBytes()
         // TODO: add debug logging
 
         // change to GET method as allowed by https://tools.ietf.org/html/rfc7231#section-6.4.3
@@ -36,7 +37,7 @@ object RichHttpClient {
       case _ ⇒ Future.successful(response)
     }
 
-  def httpClientWithRedirect(client: HttpClient)(implicit ec: ExecutionContext): HttpClient = {
+  def httpClientWithRedirect(client: HttpClient)(implicit ec: ExecutionContext, materializer: Materializer): HttpClient = {
     lazy val redirectingClient: HttpClient =
       req ⇒ client(req).flatMap(redirectOrResult(redirectingClient)) // recurse to support multiple redirects
 
