@@ -75,7 +75,11 @@ class ArchiveReaderActor extends Actor
       val podcastFailures = podcastTrys.filter(_.isFailure).map(_.asInstanceOf[Failure[Podcast]])
       val podcastSuccesses = podcastTrys.filter(_.isSuccess).map(_.asInstanceOf[Success[Podcast]])
       if (podcastFailures.nonEmpty) {
-        throw new IllegalArgumentException(podcastFailures.map(_.exception.getMessage).mkString("\n\n"))
+        podcastFailures.foreach(failure => {
+          log.error(failure.exception.getMessage)
+          log.error(failure.exception.getStackTrace.mkString("\n"))
+        })
+        throw new IllegalArgumentException(podcastFailures.map(_.exception.getSuppressed.mkString("\n\n")).mkString("\n\n"))
       } else {
         val podcasts = podcastSuccesses.map(_.value)
         if (podcasts.size <= 0) {
