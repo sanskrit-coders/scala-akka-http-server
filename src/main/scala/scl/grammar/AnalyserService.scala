@@ -7,7 +7,7 @@ import akka.actor.ActorRef
 import akka.http.scaladsl.server.Directives
 import akka.pattern.ask
 import akka.util.Timeout
-import dbSchema.grammar.SclAnalysis
+import dbSchema.grammar.{Analysis, SclAnalysis}
 import dbUtils.jsonHelper
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport.ShouldWritePretty
@@ -38,7 +38,7 @@ class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: Exe
     new ApiImplicitParam(name = "word", value = "Word to analyse, in HK", required = true, dataType = "string", paramType = "path")
   ))
   @ApiResponses(Array(
-    new ApiResponse(code = 200, message = "Return Analysis", response = classOf[Seq[SclAnalysis]]),
+    new ApiResponse(code = 200, message = "Return Analysis", response = classOf[Seq[Analysis]]),
     new ApiResponse(code = 500, message = "Internal server error")
   ))
   def getAnalysis =
@@ -46,7 +46,7 @@ class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: Exe
       get {
         complete {
           ask(analyserActorRef, word)
-            .mapTo[Seq[SclAnalysis]]
+            .mapTo[Seq[Analysis]]
         }
       }
     )

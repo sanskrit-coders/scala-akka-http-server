@@ -21,10 +21,12 @@ libraryDependencies ++= Seq(
   // JSON processing.
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
   "de.heikoseeberger" %% "akka-http-json4s" % "1.19.0-M2",
-  "org.json4s" % "json4s-native_2.12" % "3.5.3",
+  "org.json4s" % "json4s-native_2.12" % "3.5.3"
+  ,"com.github.sanskrit-coders" % "indic-transliteration_2.12" % "1.8"
+  ,"com.github.sanskrit-coders" % "sanskrit-lttoolbox_2.12" % "0.9"
 
   // Logging
-  "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
-  "org.slf4j" % "slf4j-simple" % "1.7.25"
+  ,"com.typesafe.akka" %% "akka-slf4j" % akkaVersion
+  ,"org.slf4j" % "slf4j-simple" % "1.7.25"
 )
 

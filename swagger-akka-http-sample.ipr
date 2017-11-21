@@ -6,8 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="db-interface" />
-        <module name="sanskrit-lttoolbox" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +20,7 @@
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
+      <inspection_tool class="CaseClassParam" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="JavaAccessorMethodCalledAsEmptyParen" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="MatchToPartialFunction" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="RedundantBlock" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -98,14 +97,6 @@
     <LinkMapSettings>
       <textMaps />
     </LinkMapSettings>
-  </component>
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$USER_HOME$/db-interface/pom.xml" />
-        <option value="$USER_HOME$/sanskrit-lttoolbox/pom.xml" />
-      </list>
-    </option>
   </component>
   <component name="Palette2">
     <group name="Swing">
@@ -230,8 +221,6 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/db-interface/db-interface.iml" filepath="$USER_HOME$/db-interface/db-interface.iml" />
-      <module fileurl="file://$USER_HOME$/sanskrit-lttoolbox/sanskrit-lttoolbox.iml" filepath="$USER_HOME$/sanskrit-lttoolbox/sanskrit-lttoolbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-akka-http-server.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-akka-http-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-akka-http-server-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-akka-http-server-build.iml" />
     </modules>
@@ -332,12 +321,7 @@
     </configuration>
   </component>
   <component name="ScalaCompilerConfiguration">
-    <profile name="SBT 1" modules="sanskrit-lttoolbox,db-interface">
-      <option name="postfixOps" value="true" />
-    </profile>
-    <profile name="SBT 2" modules="scala-akka-http-server">
-      <option name="postfixOps" value="true" />
-    </profile>
+    <profile name="Maven 1" modules="db-interface,sanskrit-lttoolbox,scala-akka-http-server" />
   </component>
   <component name="ScalaSbtSettings">
     <option name="linkedExternalProjectsSettings">
@@ -351,15 +335,11 @@
           </set>
         </option>
         <option name="sbtVersion" value="1.0.1" />
-        <option name="useAutoImport" value="true" />
-        <option name="useOurOwnAutoImport" value="true" />
         <option name="useSbtShell" value="true" />
       </SbtProjectSettings>
     </option>
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="$USER_HOME$/db-interface" vcs="Git" />
-    <mapping directory="$USER_HOME$/sanskrit-lttoolbox" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="libraryTable">
@@ -385,15 +365,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.29/logback-core-0.9.29-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.github.sanskrit-coders:indic-transliteration:1.1">
+    <library name="Maven: com.github.sanskrit-coders:indic-transliteration:1.7">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.1/indic-transliteration-1.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.7/indic-transliteration-1.7.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.1/indic-transliteration-1.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.7/indic-transliteration-1.7-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.1/indic-transliteration-1.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/sanskrit-coders/indic-transliteration/1.7/indic-transliteration-1.7-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.thoughtworks.paranamer:paranamer:2.8">
@@ -495,15 +475,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-java8-compat_2.12.0-M5/0.8.0-RC3/scala-java8-compat_2.12.0-M5-0.8.0-RC3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.scala-lang.modules:scala-xml_2.12:1.0.6">
+    <library name="Maven: org.scala-lang.modules:scala-parser-combinators_2.12:1.0.4">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.12/1.0.4/scala-parser-combinators_2.12-1.0.4.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.12/1.0.4/scala-parser-combinators_2.12-1.0.4-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.12/1.0.4/scala-parser-combinators_2.12-1.0.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.scala-lang.modules:scala-xml_2.12:1.0.5">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.5/scala-xml_2.12-1.0.5.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.5/scala-xml_2.12-1.0.5-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.12/1.0.5/scala-xml_2.12-1.0.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.scala-lang:scala-library:2.12.2" type="Scala">
@@ -524,6 +515,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.12.2/scala-library-2.12.2-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.scala-lang:scala-reflect:2.12.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.12.0/scala-reflect-2.12.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.12.0/scala-reflect-2.12.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.12.0/scala-reflect-2.12.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.scala-lang:scala-xml:2.11.0-M4">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-xml/2.11.0-M4/scala-xml-2.11.0-M4.jar!/" />
@@ -533,6 +535,28 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-xml/2.11.0-M4/scala-xml-2.11.0-M4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.scalactic:scalactic_2.12:3.0.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scalactic/scalactic_2.12/3.0.1/scalactic_2.12-3.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scalactic/scalactic_2.12/3.0.1/scalactic_2.12-3.0.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scalactic/scalactic_2.12/3.0.1/scalactic_2.12-3.0.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.scalatest:scalatest_2.12:3.0.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.12/3.0.1/scalatest_2.12-3.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.12/3.0.1/scalatest_2.12-3.0.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.12/3.0.1/scalatest_2.12-3.0.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.slf4j:slf4j-api:1.6.1">
@@ -553,6 +577,24 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.megard/akka-http-cors_2.12/srcs/akka-http-cors_2.12-0.2.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="SBT: ch.qos.logback:logback-classic:0.9.29:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-classic/srcs/logback-classic-0.9.29-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="SBT: ch.qos.logback:logback-core:0.9.29:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.29.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-core/srcs/logback-core-0.9.29-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="SBT: com.fasterxml.jackson.core:jackson-annotations:2.8.9:jar">
@@ -607,6 +649,33 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-scala_2.12/srcs/jackson-module-scala_2.12-2.8.9-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="SBT: com.github.sanskrit-coders:db-interface_2.12:2.9:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/db-interface_2.12/jars/db-interface_2.12-2.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/db-interface_2.12/srcs/db-interface_2.12-2.9-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="SBT: com.github.sanskrit-coders:indic-transliteration_2.12:1.8:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/jars/indic-transliteration_2.12-1.8.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/srcs/indic-transliteration_2.12-1.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="SBT: com.github.sanskrit-coders:sanskrit-lttoolbox_2.12:0.9:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/jars/sanskrit-lttoolbox_2.12-0.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/srcs/sanskrit-lttoolbox_2.12-0.9-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="SBT: com.github.swagger-akka-http:swagger-akka-http_2.12:0.11.0:jar">
@@ -798,6 +867,15 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/javax.ws.rs/jsr311-api/srcs/jsr311-api-1.1.1-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="SBT: org.apache.commons:commons-csv:1.4:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-csv/jars/commons-csv-1.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-csv/srcs/commons-csv-1.4-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="SBT: org.apache.commons:commons-lang3:3.2.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.2.1.jar!/" />
@@ -922,6 +1000,15 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.12.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="SBT: org.scalactic:scalactic_2.12:3.0.4:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.scalactic/scalactic_2.12/srcs/scalactic_2.12-3.0.4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="SBT: org.slf4j:slf4j-api:1.7.25:jar">

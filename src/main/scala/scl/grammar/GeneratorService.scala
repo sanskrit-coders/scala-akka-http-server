@@ -12,18 +12,17 @@ import dbUtils.jsonHelper
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport.ShouldWritePretty
 import io.swagger.annotations._
+import org.json4s.Formats
 import org.json4s.native.Serialization
 
 import scala.concurrent.ExecutionContext
-import scala.concurrent.duration._
-import akka.pattern.{ask, pipe}
 
 @Api(value = "/grammar/v1/generators", produces = "application/json")
 @Path("/grammar/v1/generators")
 class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives with Json4sSupport {
-  implicit val jsonFormats = jsonHelper.formats
-  implicit val jsonWritePretty = ShouldWritePretty.True
+  implicit val jsonFormats: Formats = jsonHelper.formats
+  implicit val jsonWritePretty: Json4sSupport.ShouldWritePretty = ShouldWritePretty.True
   implicit val jsonSerialization = Serialization
 
   // Actor ask timeout
@@ -50,7 +49,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
       (prakaara: String, linga: String, root: String, vibhaktiIn: String, vachana: String) => {
         get {
           complete {
-            val praatipadika = Praatipadika(root = root, prakaara = Some(prakaara), linga = Some(linga))
+            val praatipadika = Praatipadika(root = Some(root), prakaara = Some(prakaara), linga = Some(linga))
             val vibhakti = new SupVibhakti(vibhaktiNum = (vibhaktiIn.toInt - 1) % 7 + 1, prakaara = if (vibhaktiIn.toInt == 8) Some("सम्बोधनम्") else None)
             val subantaIn = new Subanta(pada = null, praatipadika = Some(praatipadika), vibhakti = Some(vibhakti), vachana = Some(vachana.toInt))
             ask(generatorActorRef, subantaIn)
@@ -65,7 +64,9 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
   // One can optimize for memory by not preconstructing the Dhaatu objects, and just storing the sclCode as map values.
   val dhaatuMap = scala.io.Source.fromInputStream(is = getClass.getResource("/scl_bin/scl_dhAtu_list.csv").openStream()).getLines().
     map(line => line.split(",")).filter(_.length == 4).map(x =>
-    Tuple2(s"${x(1)},${x(2)},${x(3)}", new Dhaatu(aupadeshikaDhaatu = Some(x(1)), artha = Some(x(3)), gaNa = Some(x(2)), sclCode = Some(x(0))))).toMap
+    Tuple2(s"${x(1)},${x(2)},${x(3)}", new Dhaatu(
+      root = Some(x(1)), sclCode = Some(x(0)), arthas = Some(Seq(x(3))), gaNas = Some(Seq(x(2)))
+    ))).toMap
 
 
   @Path("/dhaatus/{gaNa}/{dhaatu}/{artha}/{prayoga}/{lakaara}/{puruSha}/{vachana}/{kimpadI}")
@@ -77,7 +78,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
     new ApiImplicitParam(allowableValues = "karwari,karmaNi", value = "Click on 'Try it out'!", name = "prayoga", required = true, dataType = "string", paramType = "path"),
     new ApiImplicitParam(allowableValues = "lat,lit,let,lut,lqt,lot,laf,lif,luf,lqf", value = "Click on 'Try it out'!", name = "lakaara", required = true, dataType = "string", paramType = "path"),
     new ApiImplicitParam(allowableValues = "pra,ma,u", value = "Click on 'Try it out'!", name = "puruSha", required = true, dataType = "string", paramType = "path"),
-    new ApiImplicitParam(allowableValues = "eka,xwi,bahu", value = "Click on 'Try it out'!", name = "vachana", required = true, dataType = "string", paramType = "path"),
+    new ApiImplicitParam(allowableValues = "1,2,3", value = "Click on 'Try it out'!", name = "vachana", required = true, dataType = "string", paramType = "path"),
     new ApiImplicitParam(allowableValues = "parasmEpaxI,AwmanepaxI", value = "Click on 'Try it out'!", name = "kimpadI", required = true, dataType = "string", paramType = "path")))
   @ApiResponses(Array(
     new ApiResponse(code = 200, message = "pada-s", response = classOf[Seq[String]]),
@@ -94,7 +95,7 @@ class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: E
             complete("404")
           } else {
             complete {
-              val vivaxaa = new TinVivaxaa(prayoga = Some(prayoga), kimpadI = Some(kimpadI), lakaara = Some(lakaara), puruSha = Some(puruSha), vachana = Some(vachana))
+              val vivaxaa = new TinVivaxaa(prayoga = Some(prayoga), kimpadI = Some(kimpadI), lakaara = Some(lakaara), puruSha = Some(puruSha), vachana = Some(vachana.toInt))
               val tingantaIn = Tinanta(pada = None, dhaatu = dhaatuObj, vivaxaa = Some(vivaxaa))
               ask(generatorActorRef, tingantaIn)
                 .mapTo[Seq[String]]
