@@ -50,7 +50,7 @@ object Server extends App with RouteConcatenation {
   val subantaGenerator = new SubantaGenerator(binFilePath = new File(binLocation, "sup_gen.bin").getAbsolutePath)
   val tinantaGenerator = new TinantaGenerator(binFilePath = new File(binLocation, "wif_gen.bin").getAbsolutePath)
   val generatorActor = system.actorOf(
-    Props(classOf[GeneratorActor], subantaGenerator, tinantaGenerator))
+    Props(classOf[GeneratorActor], subantaGenerator, tinantaGenerator, analyser))
 
   ////// Other actors
   val archiveReaderActor = system.actorOf(Props(classOf[ArchiveReaderActor]))
