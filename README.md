@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/vedavaapi/scala-akka-http-server.svg?branch=master)](https://travis-ci.org/vedavaapi/scala-akka-http-server)
+
 # Introduction
 A REST API server written with the Scala Akka infrastructure.
 
