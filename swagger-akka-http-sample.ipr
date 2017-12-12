@@ -17,6 +17,12 @@
     <file url="file://$USER_HOME$/db-interface" charset="UTF-8" />
     <file url="file://$USER_HOME$/sanskrit-lttoolbox" charset="UTF-8" />
   </component>
+  <component name="HydraSettings">
+    <option name="hydraStorePath" value="$PROJECT_DIR$/.hydra/idea" />
+    <option name="noOfCores" value="4" />
+    <option name="projectRoot" value="$PROJECT_DIR$" />
+    <option name="sourcePartitioner" value="auto" />
+  </component>
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
@@ -327,14 +333,13 @@
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="jdk" value="1.8" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/project" />
           </set>
         </option>
-        <option name="sbtVersion" value="1.0.1" />
+        <option name="sbtVersion" value="1.0.4" />
         <option name="useSbtShell" value="true" />
       </SbtProjectSettings>
     </option>
@@ -570,7 +575,7 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: ch.megard:akka-http-cors_2.12:0.2.1:jar">
+    <library name="sbt: ch.megard:akka-http-cors_2.12:0.2.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.megard/akka-http-cors_2.12/jars/akka-http-cors_2.12-0.2.1.jar!/" />
       </CLASSES>
@@ -579,7 +584,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.megard/akka-http-cors_2.12/srcs/akka-http-cors_2.12-0.2.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: ch.qos.logback:logback-classic:0.9.29:jar">
+    <library name="sbt: ch.qos.logback:logback-classic:0.9.29:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-0.9.29.jar!/" />
       </CLASSES>
@@ -588,7 +593,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-classic/srcs/logback-classic-0.9.29-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: ch.qos.logback:logback-core:0.9.29:jar">
+    <library name="sbt: ch.qos.logback:logback-core:0.9.29:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-core/jars/logback-core-0.9.29.jar!/" />
       </CLASSES>
@@ -597,7 +602,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/ch.qos.logback/logback-core/srcs/logback-core-0.9.29-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.fasterxml.jackson.core:jackson-annotations:2.8.9:jar">
+    <library name="sbt: com.fasterxml.jackson.core:jackson-annotations:2.8.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/bundles/jackson-annotations-2.8.9.jar!/" />
       </CLASSES>
@@ -606,7 +611,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/srcs/jackson-annotations-2.8.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.fasterxml.jackson.core:jackson-core:2.8.9:jar">
+    <library name="sbt: com.fasterxml.jackson.core:jackson-core:2.8.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/bundles/jackson-core-2.8.9.jar!/" />
       </CLASSES>
@@ -615,7 +620,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/srcs/jackson-core-2.8.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.fasterxml.jackson.core:jackson-databind:2.8.9:jar">
+    <library name="sbt: com.fasterxml.jackson.core:jackson-databind:2.8.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/bundles/jackson-databind-2.8.9.jar!/" />
       </CLASSES>
@@ -624,7 +629,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.8.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9:jar">
+    <library name="sbt: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/bundles/jackson-dataformat-yaml-2.8.9.jar!/" />
       </CLASSES>
@@ -633,7 +638,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/srcs/jackson-dataformat-yaml-2.8.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.fasterxml.jackson.module:jackson-module-paranamer:2.8.9:jar">
+    <library name="sbt: com.fasterxml.jackson.module:jackson-module-paranamer:2.8.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-paranamer/bundles/jackson-module-paranamer-2.8.9.jar!/" />
       </CLASSES>
@@ -642,7 +647,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-paranamer/srcs/jackson-module-paranamer-2.8.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.fasterxml.jackson.module:jackson-module-scala_2.12:2.8.9:jar">
+    <library name="sbt: com.fasterxml.jackson.module:jackson-module-scala_2.12:2.8.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-scala_2.12/bundles/jackson-module-scala_2.12-2.8.9.jar!/" />
       </CLASSES>
@@ -651,7 +656,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-scala_2.12/srcs/jackson-module-scala_2.12-2.8.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.github.sanskrit-coders:db-interface_2.12:2.9:jar">
+    <library name="sbt: com.github.sanskrit-coders:db-interface_2.12:2.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/db-interface_2.12/jars/db-interface_2.12-2.9.jar!/" />
       </CLASSES>
@@ -660,7 +665,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/db-interface_2.12/srcs/db-interface_2.12-2.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.github.sanskrit-coders:indic-transliteration_2.12:1.8:jar">
+    <library name="sbt: com.github.sanskrit-coders:indic-transliteration_2.12:1.8:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/jars/indic-transliteration_2.12-1.8.jar!/" />
       </CLASSES>
@@ -669,7 +674,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/srcs/indic-transliteration_2.12-1.8-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.github.sanskrit-coders:sanskrit-lttoolbox_2.12:0.9:jar">
+    <library name="sbt: com.github.sanskrit-coders:sanskrit-lttoolbox_2.12:0.9:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/jars/sanskrit-lttoolbox_2.12-0.9.jar!/" />
       </CLASSES>
@@ -678,7 +683,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/srcs/sanskrit-lttoolbox_2.12-0.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.github.swagger-akka-http:swagger-akka-http_2.12:0.11.0:jar">
+    <library name="sbt: com.github.swagger-akka-http:swagger-akka-http_2.12:0.11.0:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.swagger-akka-http/swagger-akka-http_2.12/jars/swagger-akka-http_2.12-0.11.0.jar!/" />
       </CLASSES>
@@ -687,7 +692,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.swagger-akka-http/swagger-akka-http_2.12/srcs/swagger-akka-http_2.12-0.11.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.google.guava:guava:20.0:jar">
+    <library name="sbt: com.google.guava:guava:20.0:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.google.guava/guava/bundles/guava-20.0.jar!/" />
       </CLASSES>
@@ -696,7 +701,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.google.guava/guava/srcs/guava-20.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.thoughtworks.paranamer:paranamer:2.8:jar">
+    <library name="sbt: com.thoughtworks.paranamer:paranamer:2.8:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.thoughtworks.paranamer/paranamer/bundles/paranamer-2.8.jar!/" />
       </CLASSES>
@@ -705,7 +710,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.thoughtworks.paranamer/paranamer/srcs/paranamer-2.8-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-actor_2.12:2.5.4:jar">
+    <library name="sbt: com.typesafe.akka:akka-actor_2.12:2.5.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.5.4.jar!/" />
       </CLASSES>
@@ -714,7 +719,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-http-core_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-http-core_2.12:10.0.10:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/jars/akka-http-core_2.12-10.0.10.jar!/" />
       </CLASSES>
@@ -723,7 +728,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-http-spray-json_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-http-spray-json_2.12:10.0.10:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-spray-json_2.12/jars/akka-http-spray-json_2.12-10.0.10.jar!/" />
       </CLASSES>
@@ -732,7 +737,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-spray-json_2.12/srcs/akka-http-spray-json_2.12-10.0.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-http_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-http_2.12:10.0.10:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/jars/akka-http_2.12-10.0.10.jar!/" />
       </CLASSES>
@@ -741,7 +746,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/srcs/akka-http_2.12-10.0.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-parsing_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-parsing_2.12:10.0.10:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-parsing_2.12/jars/akka-parsing_2.12-10.0.10.jar!/" />
       </CLASSES>
@@ -750,7 +755,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-parsing_2.12/srcs/akka-parsing_2.12-10.0.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-slf4j_2.12:2.5.4:jar">
+    <library name="sbt: com.typesafe.akka:akka-slf4j_2.12:2.5.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-slf4j_2.12/jars/akka-slf4j_2.12-2.5.4.jar!/" />
       </CLASSES>
@@ -759,7 +764,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-slf4j_2.12/srcs/akka-slf4j_2.12-2.5.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe.akka:akka-stream_2.12:2.5.4:jar">
+    <library name="sbt: com.typesafe.akka:akka-stream_2.12:2.5.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/jars/akka-stream_2.12-2.5.4.jar!/" />
       </CLASSES>
@@ -768,7 +773,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/srcs/akka-stream_2.12-2.5.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe:config:1.3.1:jar">
+    <library name="sbt: com.typesafe:config:1.3.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/bundles/config-1.3.1.jar!/" />
       </CLASSES>
@@ -777,7 +782,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/srcs/config-1.3.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: com.typesafe:ssl-config-core_2.12:0.2.1:jar">
+    <library name="sbt: com.typesafe:ssl-config-core_2.12:0.2.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/ssl-config-core_2.12/bundles/ssl-config-core_2.12-0.2.1.jar!/" />
       </CLASSES>
@@ -786,7 +791,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/ssl-config-core_2.12/srcs/ssl-config-core_2.12-0.2.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: de.heikoseeberger:akka-http-json4s_2.12:1.19.0-M2:jar">
+    <library name="sbt: de.heikoseeberger:akka-http-json4s_2.12:1.19.0-M2:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/de.heikoseeberger/akka-http-json4s_2.12/jars/akka-http-json4s_2.12-1.19.0-M2.jar!/" />
       </CLASSES>
@@ -795,7 +800,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/de.heikoseeberger/akka-http-json4s_2.12/srcs/akka-http-json4s_2.12-1.19.0-M2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: io.spray:spray-json_2.12:1.3.3:jar">
+    <library name="sbt: io.spray:spray-json_2.12:1.3.3:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.spray/spray-json_2.12/bundles/spray-json_2.12-1.3.3.jar!/" />
       </CLASSES>
@@ -804,7 +809,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/io.spray/spray-json_2.12/srcs/spray-json_2.12-1.3.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: io.swagger:swagger-annotations:1.5.16:jar">
+    <library name="sbt: io.swagger:swagger-annotations:1.5.16:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/bundles/swagger-annotations-1.5.16.jar!/" />
       </CLASSES>
@@ -813,7 +818,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/srcs/swagger-annotations-1.5.16-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: io.swagger:swagger-core:1.5.16:jar">
+    <library name="sbt: io.swagger:swagger-core:1.5.16:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-core/jars/swagger-core-1.5.16.jar!/" />
       </CLASSES>
@@ -822,7 +827,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-core/srcs/swagger-core-1.5.16-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: io.swagger:swagger-jaxrs:1.5.16:jar">
+    <library name="sbt: io.swagger:swagger-jaxrs:1.5.16:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-jaxrs/bundles/swagger-jaxrs-1.5.16.jar!/" />
       </CLASSES>
@@ -831,7 +836,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-jaxrs/srcs/swagger-jaxrs-1.5.16-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: io.swagger:swagger-models:1.5.16:jar">
+    <library name="sbt: io.swagger:swagger-models:1.5.16:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-models/bundles/swagger-models-1.5.16.jar!/" />
       </CLASSES>
@@ -840,7 +845,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-models/srcs/swagger-models-1.5.16-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: io.swagger:swagger-scala-module_2.12:1.0.4:jar">
+    <library name="sbt: io.swagger:swagger-scala-module_2.12:1.0.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-scala-module_2.12/jars/swagger-scala-module_2.12-1.0.4.jar!/" />
       </CLASSES>
@@ -849,7 +854,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-scala-module_2.12/srcs/swagger-scala-module_2.12-1.0.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: javax.validation:validation-api:1.1.0.Final:jar">
+    <library name="sbt: javax.validation:validation-api:1.1.0.Final:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/javax.validation/validation-api/jars/validation-api-1.1.0.Final.jar!/" />
       </CLASSES>
@@ -858,7 +863,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/javax.validation/validation-api/srcs/validation-api-1.1.0.Final-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: javax.ws.rs:jsr311-api:1.1.1:jar">
+    <library name="sbt: javax.ws.rs:jsr311-api:1.1.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/javax.ws.rs/jsr311-api/jars/jsr311-api-1.1.1.jar!/" />
       </CLASSES>
@@ -867,7 +872,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/javax.ws.rs/jsr311-api/srcs/jsr311-api-1.1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.apache.commons:commons-csv:1.4:jar">
+    <library name="sbt: org.apache.commons:commons-csv:1.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-csv/jars/commons-csv-1.4.jar!/" />
       </CLASSES>
@@ -876,7 +881,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-csv/srcs/commons-csv-1.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.apache.commons:commons-lang3:3.2.1:jar">
+    <library name="sbt: org.apache.commons:commons-lang3:3.2.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.2.1.jar!/" />
       </CLASSES>
@@ -885,7 +890,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/commons-lang3/srcs/commons-lang3-3.2.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.javassist:javassist:3.21.0-GA:jar">
+    <library name="sbt: org.javassist:javassist:3.21.0-GA:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.javassist/javassist/bundles/javassist-3.21.0-GA.jar!/" />
       </CLASSES>
@@ -894,7 +899,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.javassist/javassist/srcs/javassist-3.21.0-GA-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.json4s:json4s-ast_2.12:3.5.3:jar">
+    <library name="sbt: org.json4s:json4s-ast_2.12:3.5.3:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-ast_2.12/jars/json4s-ast_2.12-3.5.3.jar!/" />
       </CLASSES>
@@ -903,7 +908,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-ast_2.12/srcs/json4s-ast_2.12-3.5.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.json4s:json4s-core_2.12:3.5.3:jar">
+    <library name="sbt: org.json4s:json4s-core_2.12:3.5.3:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-core_2.12/jars/json4s-core_2.12-3.5.3.jar!/" />
       </CLASSES>
@@ -912,7 +917,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-core_2.12/srcs/json4s-core_2.12-3.5.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.json4s:json4s-native_2.12:3.5.3:jar">
+    <library name="sbt: org.json4s:json4s-native_2.12:3.5.3:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-native_2.12/jars/json4s-native_2.12-3.5.3.jar!/" />
       </CLASSES>
@@ -921,7 +926,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-native_2.12/srcs/json4s-native_2.12-3.5.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.json4s:json4s-scalap_2.12:3.5.3:jar">
+    <library name="sbt: org.json4s:json4s-scalap_2.12:3.5.3:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-scalap_2.12/jars/json4s-scalap_2.12-3.5.3.jar!/" />
       </CLASSES>
@@ -930,7 +935,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-scalap_2.12/srcs/json4s-scalap_2.12-3.5.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.reactivestreams:reactive-streams:1.0.1:jar">
+    <library name="sbt: org.reactivestreams:reactive-streams:1.0.1:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.reactivestreams/reactive-streams/jars/reactive-streams-1.0.1.jar!/" />
       </CLASSES>
@@ -939,7 +944,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.reactivestreams/reactive-streams/srcs/reactive-streams-1.0.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.reflections:reflections:0.9.11:jar">
+    <library name="sbt: org.reflections:reflections:0.9.11:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.reflections/reflections/jars/reflections-0.9.11.jar!/" />
       </CLASSES>
@@ -948,7 +953,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.reflections/reflections/srcs/reflections-0.9.11-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.scala-lang.modules:scala-java8-compat_2.12:0.8.0:jar">
+    <library name="sbt: org.scala-lang.modules:scala-java8-compat_2.12:0.8.0:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.12/bundles/scala-java8-compat_2.12-0.8.0.jar!/" />
       </CLASSES>
@@ -957,7 +962,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.12/srcs/scala-java8-compat_2.12-0.8.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.scala-lang.modules:scala-parser-combinators_2.12:1.0.4:jar">
+    <library name="sbt: org.scala-lang.modules:scala-parser-combinators_2.12:1.0.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.4.jar!/" />
       </CLASSES>
@@ -966,7 +971,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/srcs/scala-parser-combinators_2.12-1.0.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.scala-lang.modules:scala-xml_2.12:1.0.6:jar">
+    <library name="sbt: org.scala-lang.modules:scala-xml_2.12:1.0.6:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar!/" />
       </CLASSES>
@@ -975,34 +980,34 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/srcs/scala-xml_2.12-1.0.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.scala-lang:scala-library:2.12.3:jar" type="Scala">
+    <library name="sbt: org.scala-lang:scala-library:2.12.4:jar" type="Scala">
       <properties>
         <compiler-classpath>
-          <root url="file://$USER_HOME$/.ivy2/cache/jline/jline/jars/jline-2.14.4.jar" />
-          <root url="file://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar" />
-          <root url="file://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.12.3.jar" />
-          <root url="file://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.3.jar" />
-          <root url="file://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.3.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/jline.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/scala-compiler.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/scala-library.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/scala-reflect.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/scala-xml_2.12.jar" />
         </compiler-classpath>
       </properties>
       <CLASSES>
-        <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.3/lib/scala-library.jar!/" />
+        <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/scala-library.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.3-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.scala-lang:scala-reflect:2.12.3:jar">
+    <library name="sbt: org.scala-lang:scala-reflect:2.12.4:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.3/lib/scala-reflect.jar!/" />
+        <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.4/lib/scala-reflect.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.12.3-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.12.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.scalactic:scalactic_2.12:3.0.4:jar">
+    <library name="sbt: org.scalactic:scalactic_2.12:3.0.4:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.4.jar!/" />
       </CLASSES>
@@ -1011,7 +1016,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.scalactic/scalactic_2.12/srcs/scalactic_2.12-3.0.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.slf4j:slf4j-api:1.7.25:jar">
+    <library name="sbt: org.slf4j:slf4j-api:1.7.25:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.25.jar!/" />
       </CLASSES>
@@ -1020,7 +1025,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-api/srcs/slf4j-api-1.7.25-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.slf4j:slf4j-simple:1.7.25:jar">
+    <library name="sbt: org.slf4j:slf4j-simple:1.7.25:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-simple/jars/slf4j-simple-1.7.25.jar!/" />
       </CLASSES>
@@ -1029,7 +1034,7 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.slf4j/slf4j-simple/srcs/slf4j-simple-1.7.25-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="SBT: org.yaml:snakeyaml:1.17:jar">
+    <library name="sbt: org.yaml:snakeyaml:1.17:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/org.yaml/snakeyaml/bundles/snakeyaml-1.17.jar!/" />
       </CLASSES>
