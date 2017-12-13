@@ -8,6 +8,17 @@ A REST API server written with the Scala Akka infrastructure.
 - Create or edit the src/resources/server_config_local.json file based on src/resources/server_config_template.json  
 - Test using http://petstore.swagger.io/ and replace the swagger.json with http://localhost:9090/api-docs/swagger.json . The Swagger UI can be used to send sample requests.
 
+# Setting up as a service
+- Set up service definitions: copy files in systemd directory.
+- Set permissions and ownership: `sudo chown samskritam:dip . -R`
+- Prod service
+	- `sudo systemctl start scala-akka-http-server.service`
+	- `sudo journalctl -u scala-akka-http-server.service`
+- Test service
+	- `sudo systemctl start scala-akka-http-server-test.service`
+	- `sudo journalctl -u scala-akka-http-server-test.service -f`
+
+
 # Development and contribution
 ## Implementation decisions
 - We use the Akka Http server infrastructure.
