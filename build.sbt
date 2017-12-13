@@ -11,6 +11,9 @@ val akkaHttpVersion = "10.0.10"
 libraryDependencies ++= Seq(
   // REST API documentation with swagger.
   "io.swagger" % "swagger-jaxrs" % "1.5.16",
+  // As suggested in https://stackoverflow.com/questions/43574426/how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception-in-j
+  // to resolve blow-up due to swagger :  java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlRootElement.
+  "javax.xml.bind" % "jaxb-api" % "2.3.0",
   "com.github.swagger-akka-http" %% "swagger-akka-http" % "0.11.0",
 
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,  // The Akka HTTP server

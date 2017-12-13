@@ -238,6 +238,18 @@
     <property name="last_opened_file_path" value="/usr/local/lib/node_modules/create-react-app" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
   </component>
+  <component name="PublishConfigData" serverName="vedavaapi.org">
+    <serverData>
+      <paths name="vedavaapi.org">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/project" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
@@ -346,6 +358,18 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a709a160-7579-417e-98da-c64186bdbc57" name="vedavaapi.org" url="http://vedavaapi.org">
+        <fileTransfer host="vedavaapi.org" port="22" accessType="SFTP" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
   </component>
   <component name="libraryTable">
     <library name="Maven: ch.qos.logback:logback-classic:0.9.29">
