@@ -34,8 +34,8 @@ class TransliteratorService()(implicit executionContext: ExecutionContext, reque
 
   final val USAGE_TIPS = "Click on Try it out!"
 
-  @Path("/")
-  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = USAGE_TIPS, nickname = "getPodcast", httpMethod = "GET")
+  @Path("/{sourceScript}/{destScript}")
+  @ApiOperation(value = "Return the podcast corresponding to an archive item.", notes = USAGE_TIPS, nickname = "getPodcast", httpMethod = "POST")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "sourceScript", value = "Name of the script used for the inputString value.",
       allowableValues = "iast, iastDcs, as, optitrans, dev, gujarati, gurmukhi, kannada, telugu, malayalam, oriya, bengali, assamese", defaultValue = "dev",
