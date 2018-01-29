@@ -17,7 +17,7 @@ import org.json4s.native.Serialization
 
 import scala.concurrent.ExecutionContext
 
-@Api(value = "/grammar/v1/generators", produces = "application/json")
+@Api(value = "/grammar_v1_generators", produces = "application/json")
 @Path("/grammar/v1/generators")
 class GeneratorService(generatorActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives with Json4sSupport {

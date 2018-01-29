@@ -73,6 +73,7 @@ object Server extends App with RouteConcatenation {
       new AnalyserService(analyserActor).route,
       new GeneratorService(generatorActor).route,
       new PodcastService(archiveReaderActor).route,
+      new TransliteratorService().route,
       new SwaggerUIService().route,
       new SwaggerDocService(swagger_settings = serverConfig.swagger_settings).routes  // Corresponds to : api-docs/
     )

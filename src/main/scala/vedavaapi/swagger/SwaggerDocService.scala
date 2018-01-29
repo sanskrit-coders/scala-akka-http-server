@@ -9,13 +9,13 @@ import com.github.swagger.akka.model.{Contact, Info}
 import io.swagger.models.{ExternalDocs, Scheme}
 import io.swagger.models.auth.BasicAuthDefinition
 import scl.grammar.{AnalyserService, GeneratorService}
-import vedavaapi.SwaggerSettings
+import vedavaapi.{SwaggerSettings, TransliteratorService}
 import vedavaapi.rss.PodcastService
 
 import scala.concurrent.ExecutionContext
 
 class SwaggerDocService(val swagger_settings: SwaggerSettings) extends SwaggerHttpService {
-  override val apiClasses = Set(classOf[AnalyserService], classOf[GeneratorService], classOf[PodcastService])
+  override val apiClasses = Set(classOf[PodcastService], classOf[TransliteratorService], classOf[AnalyserService], classOf[GeneratorService])
   override val basePath = swagger_settings.base_http_path.getOrElse(super.basePath)
   override val host: String = if (!swagger_settings.port.isDefined) swagger_settings.hostname.get else s"${swagger_settings.hostname.get}:${swagger_settings.port.get}"
   override val schemes = swagger_settings.protocols.map(Scheme.forValue).toList

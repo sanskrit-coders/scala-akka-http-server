@@ -17,7 +17,7 @@ import org.json4s.native.Serialization
 
 import scala.concurrent.ExecutionContext
 
-@Api(value = "/grammar/v1/analyser", produces = "application/json")
+@Api(value = "/grammar_v1", produces = "application/json")
 @Path("/grammar/v1/analyser")
 class AnalyserService(analyserActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives with Json4sSupport {

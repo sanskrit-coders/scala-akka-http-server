@@ -15,6 +15,7 @@ object Utils {
 
 }
 
+// We need a client robust to redirects and such.
 // Copied and adapted from https://github.com/akka/akka-http/issues/195
 object RichHttpClient {
   type HttpClient = HttpRequest ⇒ Future[HttpResponse]

@@ -109,7 +109,7 @@ class ArchiveReaderActor extends Actor
 }
 
 // Returns application/rss+xml, so does not extend Json4sSupport trait unlike some other REST API services.
-@Api(produces = " application/rss+xml")
+@Api(value = "/podcasts_v1", produces = " application/rss+xml")
 @Path("/podcasts/v1")
 class PodcastService(archiveReaderActorRef: ActorRef)(implicit executionContext: ExecutionContext, requestTimeoutSecs: Int)
   extends Directives {
