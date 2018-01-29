@@ -78,5 +78,6 @@ object Server extends App with RouteConcatenation {
       new SwaggerDocService(swagger_settings = serverConfig.swagger_settings).routes  // Corresponds to : api-docs/
     )
     }
+  // logger.info(routes.toString()) prints garbage.
   Http().bindAndHandle(routes, "0.0.0.0", serverConfig.service_port.get)
 }
