@@ -7,7 +7,10 @@
 - **Create a podcast feed** at [vedavaapi](http://scala.vedavaapi.org/swagger/index.html#/podcasts_v1) by supplying the necessary archive item links in the prescribed format. (You may refer to [this podcast collection](https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0) for examples.) This is a one time step.
 - Determine your feed URL - If the feed changes rarely or never, you can copy and serve the RSS feed output from some other page (eg. pastebin or [github](https://github.com/sanskrit-coders/rss-feeds/)). Otherwise, you can just use the vedavaapi api url. (You may refer to [this podcast collection](https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0) for examples, and to this  guide [SB15](https://docs.google.com/document/d/1XWLwJvtnfJctdNYx3qSDHZyDKLPeQ21o3eHNJfQ7Xj0/edit) for some steps.) This is a one time step.
 - Share your shiny new podcast feed URL to your subscribers, and **publish your feed** to Google Play, ITunes, Stitcher and TuneInRadio. This is a one time step.
-- Finally, let us add your podcast to [this podcast collection](https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0) if appropriate, by inserting a comment in that spreadsheet or by opening an issue [here](https://github.com/sanskrit-coders/rss-feeds/).
+- Finally, let us add your podcast to [this podcast collection](https://docs.google.com/spreadsheets/d/1KMhtMaHCQpucqxH3aVcmYmPvQyV9vmunvckV2ARvD4M/edit#gid=0) if appropriate, by one of these routes:
+  - using this [form](https://docs.google.com/forms/d/e/1FAIpQLSeE231VzUuXbIZhBzcZkQ-oWkIb50cZL786gSKvzMWu8XJoGw/viewform?usp=send_form) 
+  - inserting a comment in that spreadsheet,
+  - or by opening an issue [here](https://github.com/sanskrit-coders/rss-feeds/).
 
 # History.
 Given audio files hosted in some internet site (like archive.org), creating a podcast feed involved some manual labor (adding posts to a blog etc.. as described in this  guide [SB15](https://docs.google.com/document/d/1XWLwJvtnfJctdNYx3qSDHZyDKLPeQ21o3eHNJfQ7Xj0/edit).). This manual labor can be eliminated using the new open source web tool presented in this page. 
