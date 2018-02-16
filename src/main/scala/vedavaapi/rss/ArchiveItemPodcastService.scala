@@ -17,8 +17,8 @@ import dbSchema.archive.ItemInfo
 import dbSchema.rss.Podcast
 import dbUtils.jsonHelper
 import io.swagger.annotations._
-import vedavaapi.RichHttpClient.HttpClient
-import vedavaapi.{RichHttpClient, Utils}
+import sanskrit_coders.RichHttpClient.HttpClient
+import sanskrit_coders.{RichHttpClient, Utils}
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}

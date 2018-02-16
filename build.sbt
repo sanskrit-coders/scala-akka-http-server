@@ -22,9 +22,10 @@ libraryDependencies ++= Seq(
   "ch.megard" %% "akka-http-cors" % "0.2.1",  // To enable CORS.
 
   // JSON processing.
-  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
   "de.heikoseeberger" %% "akka-http-json4s" % "1.19.0-M2",
   "org.json4s" % "json4s-native_2.12" % "3.5.3"
+
+  ,"com.github.sanskrit-coders" % "scala-utils_2.12" % "0.1"
   ,"com.github.sanskrit-coders" % "indic-transliteration_2.12" % "1.25"
   ,"com.github.sanskrit-coders" % "sanskrit-lttoolbox_2.12" % "0.9"
 

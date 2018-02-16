@@ -689,13 +689,13 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/db-interface_2.12/srcs/db-interface_2.12-2.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.github.sanskrit-coders:indic-transliteration_2.12:1.8:jar">
+    <library name="sbt: com.github.sanskrit-coders:indic-transliteration_2.12:1.25:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/jars/indic-transliteration_2.12-1.8.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/jars/indic-transliteration_2.12-1.25.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/srcs/indic-transliteration_2.12-1.8-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/indic-transliteration_2.12/srcs/indic-transliteration_2.12-1.25-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: com.github.sanskrit-coders:sanskrit-lttoolbox_2.12:0.9:jar">
@@ -705,6 +705,15 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/srcs/sanskrit-lttoolbox_2.12-0.9-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="sbt: com.github.sanskrit-coders:scala-utils_2.12:0.1:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/jars/scala-utils_2.12-0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/srcs/scala-utils_2.12-0.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: com.github.swagger-akka-http:swagger-akka-http_2.12:0.11.0:jar">
@@ -750,15 +759,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="sbt: com.typesafe.akka:akka-http-spray-json_2.12:10.0.10:jar">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-spray-json_2.12/jars/akka-http-spray-json_2.12-10.0.10.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-spray-json_2.12/srcs/akka-http-spray-json_2.12-10.0.10-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: com.typesafe.akka:akka-http_2.12:10.0.10:jar">
@@ -824,15 +824,6 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/de.heikoseeberger/akka-http-json4s_2.12/srcs/akka-http-json4s_2.12-1.19.0-M2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: io.spray:spray-json_2.12:1.3.3:jar">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/io.spray/spray-json_2.12/bundles/spray-json_2.12-1.3.3.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/io.spray/spray-json_2.12/srcs/spray-json_2.12-1.3.3-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="sbt: io.swagger:swagger-annotations:1.5.16:jar">
       <CLASSES>
         <root url="jar://$USER_HOME$/.ivy2/cache/io.swagger/swagger-annotations/bundles/swagger-annotations-1.5.16.jar!/" />
@@ -894,6 +885,15 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.ivy2/cache/javax.ws.rs/jsr311-api/srcs/jsr311-api-1.1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="sbt: javax.xml.bind:jaxb-api:2.3.0:jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/javax.xml.bind/jaxb-api/jars/jaxb-api-2.3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/javax.xml.bind/jaxb-api/srcs/jaxb-api-2.3.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: org.apache.commons:commons-csv:1.4:jar">
