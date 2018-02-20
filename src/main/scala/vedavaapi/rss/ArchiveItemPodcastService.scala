@@ -40,27 +40,13 @@ class ArchiveReaderActor extends Actor
   final implicit val materializer: ActorMaterializer = ActorMaterializer(ActorMaterializerSettings(context.system))
 
   private val simpleClient: HttpRequest => Future[HttpResponse] = Http(context.system).singleRequest(_: HttpRequest)
-  private val redirectingClient: HttpClient = RichHttpClient.httpClientWithRedirect(simpleClient)
-  def readHttpString(uri: String): Future[String] = {
-    val responseFuture = redirectingClient(HttpRequest(uri = uri))
-    responseFuture.flatMap(response => response match {
-      case HttpResponse(StatusCodes.OK, headers, entity, _) =>
-        // The below is a Future[String] which is filled when the stream is read. That future is what we return!
-        entity.dataBytes.runFold(ByteString(""))(_ ++ _).map(_.utf8String)
-      case resp@HttpResponse(code, _, _, _) =>
-        val message = "Request for " + uri + " failed, response code: " + code
-        log.warning(message = message)
-        // Always make sure you consume the response entity streams (of type Source[ByteString,Unit]) by for example connecting it to a Sink (for example response.discardEntityBytes() if you don’t care about the response entity), since otherwise Akka HTTP (and the underlying Streams infrastructure) will understand the lack of entity consumption as a back-pressure signal and stop reading from the underlying TCP connection!
-        resp.discardEntityBytes()
-        Future.failed(new Exception(message))
-    })
-  }
+  private val redirectingClient: HttpRequest => Future[HttpResponse] = RichHttpClient.httpClientWithRedirect(simpleClient)
 
   def getPodcastFuture(archiveId: String, podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
 
     val uri = f"http://archive.org/metadata/${archiveId}"
     // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
-    readHttpString(uri = uri).map(responseString => {
+    RichHttpClient.httpResponseToString(redirectingClient(HttpRequest(uri = uri))).map(responseString => {
 //      log.debug(responseString)
       val archiveItem = jsonHelper.fromString[ItemInfo](responseString)
       archiveItem.toPodcast(filePattern = podcastRequest.filePattern, useArchiveOrder = podcastRequest.useArchiveOrder, podcast = podcastRequest.podcastTemplate)
@@ -99,7 +85,7 @@ class ArchiveReaderActor extends Actor
     }
     case podcastRequestUrl: ArchivePodcastRequestUri => {
       log.debug(podcastRequestUrl.toString)
-      readHttpString(uri = podcastRequestUrl.requestUri).map(responseString => {
+      RichHttpClient.httpResponseToString(redirectingClient(HttpRequest(uri = podcastRequestUrl.requestUri))).map(responseString => {
         log.debug(responseString)
         val podcastRequest = jsonHelper.fromString[ArchivePodcastRequest](responseString)
         getFinalPodcastFuture(podcastRequest = podcastRequest)

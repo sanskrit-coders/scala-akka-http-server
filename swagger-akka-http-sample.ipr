@@ -707,13 +707,13 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/srcs/sanskrit-lttoolbox_2.12-0.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.github.sanskrit-coders:scala-utils_2.12:0.1:jar">
+    <library name="sbt: com.github.sanskrit-coders:scala-utils_2.12:0.2:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/jars/scala-utils_2.12-0.1.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/jars/scala-utils_2.12-0.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/srcs/scala-utils_2.12-0.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/srcs/scala-utils_2.12-0.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: com.github.swagger-akka-http:swagger-akka-http_2.12:0.11.0:jar">
