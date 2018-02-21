@@ -707,13 +707,13 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/sanskrit-lttoolbox_2.12/srcs/sanskrit-lttoolbox_2.12-0.9-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.github.sanskrit-coders:scala-utils_2.12:0.2:jar">
+    <library name="sbt: com.github.sanskrit-coders:scala-utils_2.12:0.5:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/jars/scala-utils_2.12-0.2.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/jars/scala-utils_2.12-0.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/srcs/scala-utils_2.12-0.2-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.github.sanskrit-coders/scala-utils_2.12/srcs/scala-utils_2.12-0.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: com.github.swagger-akka-http:swagger-akka-http_2.12:0.11.0:jar">
@@ -743,67 +743,67 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/com.thoughtworks.paranamer/paranamer/srcs/paranamer-2.8-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe.akka:akka-actor_2.12:2.5.4:jar">
+    <library name="sbt: com.typesafe.akka:akka-actor_2.12:2.4.20:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.5.4.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.4.20.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.5.4-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/srcs/akka-actor_2.12-2.4.20-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe.akka:akka-http-core_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-http-core_2.12:10.0.11:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/jars/akka-http-core_2.12-10.0.10.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/jars/akka-http-core_2.12-10.0.11.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.10-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http-core_2.12/srcs/akka-http-core_2.12-10.0.11-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe.akka:akka-http_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-http_2.12:10.0.11:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/jars/akka-http_2.12-10.0.10.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/jars/akka-http_2.12-10.0.11.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/srcs/akka-http_2.12-10.0.10-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-http_2.12/srcs/akka-http_2.12-10.0.11-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe.akka:akka-parsing_2.12:10.0.10:jar">
+    <library name="sbt: com.typesafe.akka:akka-parsing_2.12:10.0.11:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-parsing_2.12/jars/akka-parsing_2.12-10.0.10.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-parsing_2.12/jars/akka-parsing_2.12-10.0.11.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-parsing_2.12/srcs/akka-parsing_2.12-10.0.10-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-parsing_2.12/srcs/akka-parsing_2.12-10.0.11-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe.akka:akka-slf4j_2.12:2.5.4:jar">
+    <library name="sbt: com.typesafe.akka:akka-slf4j_2.12:2.4.20:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-slf4j_2.12/jars/akka-slf4j_2.12-2.5.4.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-slf4j_2.12/jars/akka-slf4j_2.12-2.4.20.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-slf4j_2.12/srcs/akka-slf4j_2.12-2.5.4-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-slf4j_2.12/srcs/akka-slf4j_2.12-2.4.20-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe.akka:akka-stream_2.12:2.5.4:jar">
+    <library name="sbt: com.typesafe.akka:akka-stream_2.12:2.4.20:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/jars/akka-stream_2.12-2.5.4.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/jars/akka-stream_2.12-2.4.20.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/srcs/akka-stream_2.12-2.5.4-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/srcs/akka-stream_2.12-2.4.20-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: com.typesafe:config:1.3.1:jar">
+    <library name="sbt: com.typesafe:config:1.3.0:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/bundles/config-1.3.1.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/bundles/config-1.3.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/srcs/config-1.3.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe/config/srcs/config-1.3.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: com.typesafe:ssl-config-core_2.12:0.2.1:jar">
@@ -959,13 +959,13 @@
         <root url="jar://$USER_HOME$/.ivy2/cache/org.json4s/json4s-scalap_2.12/srcs/json4s-scalap_2.12-3.5.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="sbt: org.reactivestreams:reactive-streams:1.0.1:jar">
+    <library name="sbt: org.reactivestreams:reactive-streams:1.0.0:jar">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/org.reactivestreams/reactive-streams/jars/reactive-streams-1.0.1.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.reactivestreams/reactive-streams/jars/reactive-streams-1.0.0.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/org.reactivestreams/reactive-streams/srcs/reactive-streams-1.0.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.reactivestreams/reactive-streams/srcs/reactive-streams-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="sbt: org.reflections:reflections:0.9.11:jar">
