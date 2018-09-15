@@ -34,8 +34,8 @@ class ArchiveReaderException extends Exception {
 class ArchiveReaderActor extends Actor
   with ActorLogging {
 
-  import akka.pattern.pipe
-  import context.dispatcher
+  import akka.pattern.pipe // For pipeTo() below.
+  import context.dispatcher // Provides ExecutionContext - required below.
 
   final implicit val materializer: ActorMaterializer = ActorMaterializer(ActorMaterializerSettings(context.system))
 
