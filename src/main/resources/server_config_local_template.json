@@ -1,0 +1,13 @@
+{
+  "deployment_directory": "/home/vvasuki/sanskrit-coders/scala-akka-http-server/",
+  "service_port": 9090,
+  "swagger_settings": {
+    "hostname": "localhost",
+    "port": 9090,
+    "base_http_path": "/",
+    "protocols": [
+      "https",
+      "http"
+    ]
+  }
+}
