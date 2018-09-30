@@ -29,7 +29,7 @@ libraryDependencies ++= Seq(
   "de.heikoseeberger" %% "akka-http-json4s" % "1.21.0",
   "org.json4s" % "json4s-native_2.12" % "3.6.1"
 
-  ,"com.github.sanskrit-coders" % "scala-utils_2.12" % "1.0"
+  ,"com.github.sanskrit-coders" % "scala-utils_2.12" % "1.1"
   ,"com.github.sanskrit-coders" % "indic-transliteration_2.12" % "1.30"
   ,"com.github.sanskrit-coders" % "db-interface_2.12" % "3.5"
   ,"com.github.sanskrit-coders" % "sanskrit-lttoolbox_2.12" % "0.9" excludeAll(
