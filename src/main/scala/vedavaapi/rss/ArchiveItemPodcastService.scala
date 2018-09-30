@@ -45,6 +45,7 @@ class ArchiveReaderActor extends Actor
   def getPodcastFuture(archiveId: String, podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
 
     val uri = f"http://archive.org/metadata/${archiveId}"
+    log.info(s"Connecting to ${uri}")
     // Example response: http://jsoneditoronline.org/?id=e031ab3cecf3cd6e0891eb9f303cd963
     RichHttpClient.httpResponseToString(redirectingClient(HttpRequest(uri = uri))).map(responseString => {
 //      log.debug(responseString)
@@ -84,7 +85,7 @@ class ArchiveReaderActor extends Actor
       getFinalPodcastFuture(podcastRequest = podcastRequest).map(_.getNode.toString()).pipeTo(sender())
     }
     case podcastRequestUrl: ArchivePodcastRequestUri => {
-      log.debug(podcastRequestUrl.toString)
+      log.info(podcastRequestUrl.toString)
       RichHttpClient.httpResponseToString(redirectingClient(HttpRequest(uri = podcastRequestUrl.requestUri))).map(responseString => {
         log.debug(responseString)
         val podcastRequest = jsonHelper.fromString[ArchivePodcastRequest](responseString)
