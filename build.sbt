@@ -31,7 +31,7 @@ libraryDependencies ++= Seq(
 
   ,"com.github.sanskrit-coders" % "scala-utils_2.12" % "1.1"
   ,"com.github.sanskrit-coders" % "indic-transliteration_2.12" % "1.30"
-  ,"com.github.sanskrit-coders" % "db-interface_2.12" % "3.7"
+  ,"com.github.sanskrit-coders" % "db-interface_2.12" % "3.8"
   ,"com.github.sanskrit-coders" % "sanskrit-lttoolbox_2.12" % "0.9" excludeAll(
     // Depends on 2.5.4, which is incompatible with this.
     ExclusionRule("com.typesafe.akka", "akka-actor_2.12"),
