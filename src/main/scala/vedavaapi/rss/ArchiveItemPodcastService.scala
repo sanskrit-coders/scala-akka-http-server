@@ -4,8 +4,8 @@ import java.net.URLDecoder
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import java.util.regex.{Pattern, PatternSyntaxException}
-import javax.ws.rs.Path
 
+import javax.ws.rs.Path
 import akka.actor.{Actor, ActorLogging, ActorRef}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
@@ -14,7 +14,7 @@ import akka.pattern.ask
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.{ByteString, Timeout}
 import dbSchema.archive.ItemInfo
-import dbSchema.rss.Podcast
+import dbSchema.rss.{ArchivePodcastRequest, ArchivePodcastRequestUri, Podcast}
 import dbUtils.jsonHelper
 import io.swagger.annotations._
 import sanskrit_coders.RichHttpClient.HttpClient
@@ -22,10 +22,6 @@ import sanskrit_coders.{RichHttpClient, Utils}
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
-
-case class ArchivePodcastRequest(archiveIds: Seq[String], useArchiveOrder: Boolean = true,
-                                 filePattern: String, podcastTemplate: Podcast)
-case class ArchivePodcastRequestUri(requestUri: String)
 
 class ArchiveReaderException extends Exception {
 
@@ -54,6 +50,12 @@ class ArchiveReaderActor extends Actor
     })
   }
 
+  /**
+    * Wraps getPodcastFuture to handle errors gracefully.
+    * 
+    * @param podcastRequest
+    * @return
+    */
   def getFinalPodcastFuture(podcastRequest: ArchivePodcastRequest): Future[Podcast] = {
     assert(podcastRequest.archiveIds.nonEmpty)
     val podcastFutures = podcastRequest.archiveIds.map(x => getPodcastFuture(archiveId = x, podcastRequest = podcastRequest))
